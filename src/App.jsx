@@ -209,7 +209,7 @@ export default function OrientAT(){
   const facProgs=(fid)=>Object.entries(PROGRAMS).filter(([,p])=>p.faculty===fid);
 
   return(
-    <div style={{minHeight:"100vh",background:C.bg,fontFamily:"'Segoe UI',system-ui,sans-serif",color:C.textDark}}>
+    <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",background:C.bg,fontFamily:"'Segoe UI',system-ui,sans-serif",color:C.textDark}}>
 
       {/* HEADER */}
       <header style={{background:C.purple,borderBottom:`3px solid ${C.red}`,padding:"14px 24px"}}>
@@ -240,7 +240,7 @@ export default function OrientAT(){
         </div>
       </header>
 
-      <main style={{maxWidth:1000,margin:"0 auto",padding:"26px 22px 60px"}}>
+      <main style={{flex:1,maxWidth:1000,width:"100%",margin:"0 auto",padding:"26px 22px 60px"}}>
 
         {/* HOME */}
         {screen==="home"&&(
