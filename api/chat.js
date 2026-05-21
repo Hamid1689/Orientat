@@ -23,6 +23,11 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
+
+    if (response.status === 429) {
+      return res.status(200).json({ content: [{ text: "⏳ Слишком много запросов. Подожди 10-20 секунд и попробуй снова." }] });
+    }
+
     const text = data?.choices?.[0]?.message?.content;
     if (!text) return res.status(500).json({ error: "Empty response from Groq" });
     return res.status(200).json({ content: [{ text }] });
