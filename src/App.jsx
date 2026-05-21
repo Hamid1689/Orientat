@@ -359,8 +359,8 @@ export default function OrientAT(){
               <div style={{display:"flex",flexDirection:"column",gap:10}}>
                 {quiz[step].opts.map((opt,i)=>(
                   <button key={i} onClick={()=>pickAnswer(opt.t)}
-                    style={{padding:"14px 18px",borderRadius:8,textAlign:"left",border:`1.5px solid ${selected===opt.t?C.red:C.border}`,background:selected===opt.t?"rgba(213,13,31,0.06)":C.cardBg,color:selected===opt.t?C.red:C.textDark,fontSize:14,fontWeight:selected===opt.t?700:400,cursor:"pointer",transition:"all 0.15s",display:"flex",alignItems:"center",gap:12}}>
-                    <span style={{width:26,height:26,borderRadius:"50%",background:selected===opt.t?C.red:C.purpleLight,color:selected===opt.t?C.white:C.purple,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:700,flexShrink:0}}>{["A","B","C","D"][i]}</span>
+                    style={{padding:"14px 18px",borderRadius:8,textAlign:"left",border:`1.5px solid ${selected===opt.t?"#16a34a":C.border}`,background:selected===opt.t?"rgba(22,163,74,0.08)":C.cardBg,color:selected===opt.t?"#15803d":C.textDark,fontSize:14,fontWeight:selected===opt.t?700:400,cursor:"pointer",transition:"all 0.15s",display:"flex",alignItems:"center",gap:12}}>
+                    <span style={{width:26,height:26,borderRadius:"50%",background:selected===opt.t?"#16a34a":C.purpleLight,color:selected===opt.t?C.white:C.purple,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:700,flexShrink:0}}>{["A","B","C","D"][i]}</span>
                     {opt.l}
                   </button>
                 ))}
