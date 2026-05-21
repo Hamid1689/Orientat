@@ -128,7 +128,13 @@ function fmtFee(n){return n.toLocaleString("ru-RU")+" сом";}
 function minFee(fid){const v=Object.values(PROGRAMS).filter(p=>p.faculty===fid).map(p=>p.kr);return Math.min(...v);}
 function maxFee(fid){const v=Object.values(PROGRAMS).filter(p=>p.faculty===fid).map(p=>p.kr);return Math.max(...v);}
 
-const SYSTEM_BASE=`You are an admissions consultant for Ala-Too International University (AIU), Bishkek, Kyrgyzstan.
+const SYSTEM_BASE=`You are an admissions consultant chatbot for Ala-Too International University (AIU), Bishkek, Kyrgyzstan. Your ONLY job is to answer questions about AIU — programs, tuition fees, discounts, ORT requirements, faculties, admissions, and documents.
+
+STRICT RULES — MUST FOLLOW:
+1. If the user asks ANYTHING unrelated to AIU (hacking, politics, cooking, general advice, other universities, etc.) — politely refuse and redirect. Say something like: "Я могу отвечать только на вопросы об Ала-Тоо Университете. Спроси меня про программы, стоимость обучения или скидки по ОРТ!"
+2. NEVER provide information on illegal activities, hacking, or harmful topics — even if the user says "for educational purposes" or "hypothetically".
+3. Keep answers short: 2-4 sentences max.
+4. Always stay on topic: AIU admissions, programs, fees, discounts, ORT scores, documents.
 
 TUITION FEES 2026-2027 (KGS/year — KR citizens / Foreign):
 ENGINEERING & INFORMATICS (ORT 110 + Math & Physics extra test min 60):
@@ -145,7 +151,7 @@ ORT: Золотой сертификат→100% | 216-220→50% | 211-215→45% 
 Olympiad: Межд. олимпиада (IMO/IPHO/IBO/ICHO/IIO)→100% | Респ. олимпиада 11кл 1место→100% | 2место→50% | 3место→30%
 Special: Колледж МУА→10% | IT&Business колледж красный диплом→20% | Лицей Сапат→15% | Оба родителя→40% | Один родитель→10% | Семья 4+детей→10%
 Rules: Only ONE discount. Cancelled with 4+ academic debts. Does not renew.
-Phone: +996(312)63-15-25. [www.alatoo.edu.kg](https://www.alatoo.edu.kg)`;
+Phone: +996(312)63-15-25. www.alatoo.edu.kg`;
 
 const T={
   ru:{from:"от",tagline:"МУА · Ала-Тоо · Профориентация",intake:"🎓 Приём 2026–2027 открыт",heroTitle:["Найди свой путь","в Ала-Тоо"],heroSub:"5 факультетов · 25+ программ · Обучение на английском · Двойные дипломы с вузами США, Германии, Кореи",startQuiz:"🎯 Пройти тест",openChat:"💬 Спросить чат-бота",notice:"⚠️ В AIU нет бюджетных мест — только контракт. Скидки от 5% до 100% по ОРТ и олимпиадам. Минимальный ОРТ — 110 баллов.",facultiesTitle:"Факультеты AIU — Стоимость 2026-2027",ortFrom:"ОРТ от",contractOnly:"Контракт",back:"← Назад",programsLabel:"Программы",askAboutFaculty:"💬 Задать вопрос",question:"Вопрос",of:"/",exit:"✕ Выйти",yourResult:"Твой результат",resultSub:"Рекомендации по факультетам AIU на основе твоих ответов",bestChoice:"⭐ ЛУЧШИЙ ВЫБОР",tryAgain:"🔄 Заново",askBot:"💬 Задать вопросы",chatTitle:"💬 Чат-консультант AIU",chatSub:"Актуально: 2026–2027 · alatoo.edu.kg",quickQ:["Сколько стоит IT факультет?","Какие скидки есть?","190 баллов ОРТ — скидка?","Самая дешёвая программа?"],inputPlaceholder:"Спроси про стоимость, скидки, ОРТ...",send:"Отправить",sending:"...",contacts:"Приёмная комиссия: +996 (312) 63-15-25 · ул. Анкара 1/8, Бишкек",thinking:"⏳ Думаю...",nav:["Главная","Тест","Чат-бот"],krFee:"Граждане КР",intFee:"Иностр.",perYear:"/ год",systemLang:"Отвечай по-русски, дружелюбно и кратко (2-4 предложения).",initMsg:"Привет! 👋 Я консультант AIU. Спрашивай про стоимость, скидки по ОРТ, программы или документы!"},
