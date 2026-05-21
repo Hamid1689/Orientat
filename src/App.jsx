@@ -1,4 +1,11 @@
 import { useState, useRef, useEffect } from "react";
+import L from "leaflet";
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
+  iconUrl:"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
+  shadowUrl:"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+});
 
 /* ══ COLORS ══
    Purple:  #2D2752
@@ -156,10 +163,114 @@ Rules: Only ONE discount. Cancelled with 4+ academic debts. Does not renew.
 Phone: +996(312)63-15-25. www.alatoo.edu.kg`;
 
 const T={
-  ru:{from:"от",currency:"сом",tagline:"МУА · Ала-Тоо · Профориентация",intake:"🎓 Приём 2026–2027 открыт",heroTitle:["Найди свой путь","в Ала-Тоо"],heroSub:"5 факультетов · 25+ программ · Обучение на английском · Двойные дипломы с вузами США, Германии, Кореи",startQuiz:"🎯 Пройти тест",openChat:"💬 Спросить чат-бота",notice:"⚠️ В AIU нет бюджетных мест — только контракт. Скидки от 5% до 100% по ОРТ и олимпиадам. Минимальный ОРТ — 110 баллов.",facultiesTitle:"Факультеты AIU — Стоимость 2026-2027",ortFrom:"ОРТ от",contractOnly:"Контракт",back:"← Назад",programsLabel:"Программы",askAboutFaculty:"💬 Задать вопрос",question:"Вопрос",of:"/",exit:"✕ Выйти",yourResult:"Твой результат",resultSub:"Рекомендации по факультетам AIU на основе твоих ответов",bestChoice:"⭐ ЛУЧШИЙ ВЫБОР",tryAgain:"🔄 Заново",askBot:"💬 Задать вопросы",chatTitle:"💬 Чат-консультант AIU",chatSub:"Актуально: 2026–2027 · alatoo.edu.kg",quickQ:["Сколько стоит IT факультет?","Какие скидки есть?","190 баллов ОРТ — скидка?","Самая дешёвая программа?"],inputPlaceholder:"Спроси про стоимость, скидки, ОРТ...",send:"Отправить",sending:"...",contacts:"Приёмная комиссия: +996 (312) 63-15-25 · ул. Анкара 1/8, Бишкек",thinking:"⏳ Думаю...",nav:["Главная","Тест","Чат-бот"],krFee:"Граждане КР",intFee:"Иностр.",perYear:"/ год",systemLang:"Отвечай по-русски, дружелюбно и кратко (2-4 предложения).",initMsg:"Привет! 👋 Я консультант AIU. Спрашивай про стоимость, скидки по ОРТ, программы или документы!"},
-  kg:{from:"",currency:"сомдон",tagline:"МУА · Ала-Тоо · Кесип тандоо",intake:"🎓 2026–2027 кабыл алуу ачык",heroTitle:["Өз жолуңду тап","Ала-Тоодо"],heroSub:"5 факультет · 25+ программа · Англис тилинде окутуу · АКШ, Германия, Корея менен эки диплом",startQuiz:"🎯 Тест өтүү",openChat:"💬 Чат-боттон сурануу",notice:"⚠️ МУАда бюджеттик орундар жок — контракт гана. ОРТ жана олимпиадалар боюнча 5%тен 100%ке чейин арзандатуу бар.",facultiesTitle:"AIU факультеттери — 2026-2027 наркы",ortFrom:"ОРТ дан",contractOnly:"Контракт",back:"← Артка",programsLabel:"Программалар",askAboutFaculty:"💬 Суроо берүү",question:"Суроо",of:"/",exit:"✕ Чыгуу",yourResult:"Сенин натыйжаң",resultSub:"Жоопторуңун негизинде AIU факультеттери боюнча сунуштар",bestChoice:"⭐ ЭҢ ЖАКШЫ ТАНДОО",tryAgain:"🔄 Кайрадан",askBot:"💬 Суроо берүү",chatTitle:"💬 AIU Чат-Консультант",chatSub:"Актуалдуу: 2026–2027 · alatoo.edu.kg",quickQ:["IT факультети канча турат?","Кандай арзандатуулар бар?","190 балл — кандай арзандатуу?","Эң арзан программа?"],inputPlaceholder:"Нарк, арзандатуу, ОРТ жөнүндө суроо жаз...",send:"Жөнөтүү",sending:"...",contacts:"Кабыл алуу бөлүмү: +996 (312) 63-15-25 · Анкара 1/8, Бишкек",thinking:"⏳ Ойлонуп жатам...",nav:["Башкы бет","Тест","Чат-бот"],krFee:"КР жарандары",intFee:"Чет өлкөлүк",perYear:"/ жыл",systemLang:"Кыргыз тилинде жооп бер, достукта жана кыскача (2-4 сүйлөм).",initMsg:"Саламатсыңбы! 👋 Мен AIU консультантымын. Окуунун наркы, арзандатуулар же программалар жөнүндө суроо бер!"},
-  en:{from:"from",currency:"som",tagline:"AIU · Ala-Too · Career Guidance",intake:"🎓 Admissions 2026–2027 Open",heroTitle:["Find Your Path","at Ala-Too"],heroSub:"5 Faculties · 25+ Programs · English-medium · Dual Degrees with USA, Germany, South Korea",startQuiz:"🎯 Take the Quiz",openChat:"💬 Ask the Chatbot",notice:"⚠️ AIU has no government-funded seats — tuition only. Scholarships 5–100% based on ORT and olympiads. Min ORT: 110.",facultiesTitle:"AIU Faculties — Tuition 2026-2027",ortFrom:"ORT from",contractOnly:"Tuition",back:"← Back",programsLabel:"Programs",askAboutFaculty:"💬 Ask a Question",question:"Question",of:"/",exit:"✕ Exit",yourResult:"Your Result",resultSub:"AIU faculty recommendations based on your answers",bestChoice:"⭐ BEST MATCH",tryAgain:"🔄 Retake",askBot:"💬 Ask Questions",chatTitle:"💬 AIU Chat Consultant",chatSub:"Up-to-date: 2026–2027 · alatoo.edu.kg",quickQ:["How much is the IT faculty?","What discounts are available?","I scored 190 — what discount?","Cheapest programme?"],inputPlaceholder:"Ask about tuition, discounts, ORT...",send:"Send",sending:"...",contacts:"Admissions: +996 (312) 63-15-25 · Ankara St 1/8, Bishkek",thinking:"⏳ Thinking...",nav:["Home","Quiz","Chatbot"],krFee:"KR Citizens",intFee:"Foreign",perYear:"/ yr",systemLang:"Reply in English, friendly and concise (2-4 sentences).",initMsg:"Hi! 👋 I'm the AIU admissions consultant. Ask about tuition, ORT discounts, programmes or documents!"},
+  ru:{from:"от",currency:"сом",tagline:"МУА · Ала-Тоо · Профориентация",intake:"🎓 Приём 2026–2027 открыт",heroTitle:["Найди свой путь","в Ала-Тоо"],heroSub:"5 факультетов · 25+ программ · Обучение на английском · Двойные дипломы с вузами США, Германии, Кореи",startQuiz:"🎯 Пройти тест",openChat:"💬 Спросить чат-бота",notice:"⚠️ В AIU нет бюджетных мест — только контракт. Скидки от 5% до 100% по ОРТ и олимпиадам. Минимальный ОРТ — 110 баллов.",facultiesTitle:"Факультеты AIU — Стоимость 2026-2027",ortFrom:"ОРТ от",contractOnly:"Контракт",back:"← Назад",programsLabel:"Программы",askAboutFaculty:"💬 Задать вопрос",question:"Вопрос",of:"/",exit:"✕ Выйти",yourResult:"Твой результат",resultSub:"Рекомендации по факультетам AIU на основе твоих ответов",bestChoice:"⭐ ЛУЧШИЙ ВЫБОР",tryAgain:"🔄 Заново",askBot:"💬 Задать вопросы",chatTitle:"💬 Чат-консультант AIU",chatSub:"Актуально: 2026–2027 · alatoo.edu.kg",quickQ:["Сколько стоит IT факультет?","Какие скидки есть?","190 баллов ОРТ — скидка?","Самая дешёвая программа?"],inputPlaceholder:"Спроси про стоимость, скидки, ОРТ...",send:"Отправить",sending:"...",contacts:"Приёмная комиссия: +996 (312) 63-15-25 · ул. Анкара 1/8, Бишкек",thinking:"⏳ Думаю...",nav:["Главная","Тест","Чат-бот","Карта"],krFee:"Граждане КР",intFee:"Иностр.",perYear:"/ год",systemLang:"Отвечай по-русски, дружелюбно и кратко (2-4 предложения).",initMsg:"Привет! 👋 Я консультант AIU. Спрашивай про стоимость, скидки по ОРТ, программы или документы!"},
+  kg:{from:"",currency:"сомдон",tagline:"МУА · Ала-Тоо · Кесип тандоо",intake:"🎓 2026–2027 кабыл алуу ачык",heroTitle:["Өз жолуңду тап","Ала-Тоодо"],heroSub:"5 факультет · 25+ программа · Англис тилинде окутуу · АКШ, Германия, Корея менен эки диплом",startQuiz:"🎯 Тест өтүү",openChat:"💬 Чат-боттон сурануу",notice:"⚠️ МУАда бюджеттик орундар жок — контракт гана. ОРТ жана олимпиадалар боюнча 5%тен 100%ке чейин арзандатуу бар.",facultiesTitle:"AIU факультеттери — 2026-2027 наркы",ortFrom:"ОРТ дан",contractOnly:"Контракт",back:"← Артка",programsLabel:"Программалар",askAboutFaculty:"💬 Суроо берүү",question:"Суроо",of:"/",exit:"✕ Чыгуу",yourResult:"Сенин натыйжаң",resultSub:"Жоопторуңун негизинде AIU факультеттери боюнча сунуштар",bestChoice:"⭐ ЭҢ ЖАКШЫ ТАНДОО",tryAgain:"🔄 Кайрадан",askBot:"💬 Суроо берүү",chatTitle:"💬 AIU Чат-Консультант",chatSub:"Актуалдуу: 2026–2027 · alatoo.edu.kg",quickQ:["IT факультети канча турат?","Кандай арзандатуулар бар?","190 балл — кандай арзандатуу?","Эң арзан программа?"],inputPlaceholder:"Нарк, арзандатуу, ОРТ жөнүндө суроо жаз...",send:"Жөнөтүү",sending:"...",contacts:"Кабыл алуу бөлүмү: +996 (312) 63-15-25 · Анкара 1/8, Бишкек",thinking:"⏳ Ойлонуп жатам...",nav:["Башкы бет","Тест","Чат-бот","Карта"],krFee:"КР жарандары",intFee:"Чет өлкөлүк",perYear:"/ жыл",systemLang:"Кыргыз тилинде жооп бер, достукта жана кыскача (2-4 сүйлөм).",initMsg:"Саламатсыңбы! 👋 Мен AIU консультантымын. Окуунун наркы, арзандатуулар же программалар жөнүндө суроо бер!"},
+  en:{from:"from",currency:"som",tagline:"AIU · Ala-Too · Career Guidance",intake:"🎓 Admissions 2026–2027 Open",heroTitle:["Find Your Path","at Ala-Too"],heroSub:"5 Faculties · 25+ Programs · English-medium · Dual Degrees with USA, Germany, South Korea",startQuiz:"🎯 Take the Quiz",openChat:"💬 Ask the Chatbot",notice:"⚠️ AIU has no government-funded seats — tuition only. Scholarships 5–100% based on ORT and olympiads. Min ORT: 110.",facultiesTitle:"AIU Faculties — Tuition 2026-2027",ortFrom:"ORT from",contractOnly:"Tuition",back:"← Back",programsLabel:"Programs",askAboutFaculty:"💬 Ask a Question",question:"Question",of:"/",exit:"✕ Exit",yourResult:"Your Result",resultSub:"AIU faculty recommendations based on your answers",bestChoice:"⭐ BEST MATCH",tryAgain:"🔄 Retake",askBot:"💬 Ask Questions",chatTitle:"💬 AIU Chat Consultant",chatSub:"Up-to-date: 2026–2027 · alatoo.edu.kg",quickQ:["How much is the IT faculty?","What discounts are available?","I scored 190 — what discount?","Cheapest programme?"],inputPlaceholder:"Ask about tuition, discounts, ORT...",send:"Send",sending:"...",contacts:"Admissions: +996 (312) 63-15-25 · Ankara St 1/8, Bishkek",thinking:"⏳ Thinking...",nav:["Home","Quiz","Chatbot","Map"],krFee:"KR Citizens",intFee:"Foreign",perYear:"/ yr",systemLang:"Reply in English, friendly and concise (2-4 sentences).",initMsg:"Hi! 👋 I'm the AIU admissions consultant. Ask about tuition, ORT discounts, programmes or documents!"},
 };
+
+const BLOCKS = [
+  {id:"A",emoji:"🏛️",lat:42.82253,lng:74.58608,color:"#2D2752",
+   ru:{name:"Блок A",desc:"Библиотека, деканат, администрация"},
+   kg:{name:"Блок A",desc:"Китепкана, деканат, администрация"},
+   en:{name:"Block A",desc:"Library, dean's office, administration"}},
+  {id:"B",emoji:"💻",lat:42.82228,lng:74.58658,color:"#0F766E",
+   ru:{name:"Блок B",desc:"Аудитории IT факультета"},
+   kg:{name:"Блок B",desc:"IT факультетинин аудиториялары"},
+   en:{name:"Block B",desc:"IT Faculty classrooms"}},
+  {id:"C",emoji:"🎓",lat:42.82198,lng:74.58618,color:"#B45309",
+   ru:{name:"Блок C",desc:"Колледж IT & Business"},
+   kg:{name:"Блок C",desc:"IT & Business колледжи"},
+   en:{name:"Block C",desc:"IT & Business College"}},
+  {id:"D",emoji:"📚",lat:42.82253,lng:74.58698,color:"#15803D",
+   ru:{name:"Блок D",desc:"Образование и социальные науки"},
+   kg:{name:"Блок D",desc:"Билим берүү жана социалдык илимдер"},
+   en:{name:"Block D",desc:"Education & Social Sciences"}},
+  {id:"E",emoji:"🩺",lat:42.82198,lng:74.58698,color:"#C2410C",
+   ru:{name:"Блок E",desc:"Медицинский факультет"},
+   kg:{name:"Блок E",desc:"Медицина факультети"},
+   en:{name:"Block E",desc:"Medical Faculty"}},
+];
+
+function MapScreen({lang,t}){
+  const mapRef=useRef(null);
+  const mapInstanceRef=useRef(null);
+  const [activeBlock,setActiveBlock]=useState(null);
+
+  useEffect(()=>{
+    if(!mapRef.current||mapInstanceRef.current)return;
+    const map=L.map(mapRef.current,{center:[42.8222,74.5865],zoom:18});
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+      attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'
+    }).addTo(map);
+
+    const markers={};
+    BLOCKS.forEach(block=>{
+      const circle=L.circleMarker([block.lat,block.lng],{
+        radius:22,fillColor:block.color,color:"#fff",weight:3,opacity:1,fillOpacity:0.95
+      }).addTo(map);
+
+      const icon=L.divIcon({
+        html:`<div style="font-weight:900;font-size:13px;color:#fff;text-align:center;line-height:22px;width:22px">${block.id}</div>`,
+        iconSize:[22,22],iconAnchor:[11,11],className:""
+      });
+      L.marker([block.lat,block.lng],{icon}).addTo(map);
+
+      circle.bindPopup(`
+        <div style="font-family:'Segoe UI',sans-serif;min-width:170px;padding:4px">
+          <div style="font-weight:800;font-size:14px;margin-bottom:4px">${block.emoji} ${block[lang]?.name}</div>
+          <div style="font-size:12px;color:#555">${block[lang]?.desc}</div>
+        </div>
+      `);
+      markers[block.id]=circle;
+    });
+
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(pos=>{
+        const{latitude:lat,longitude:lng}=pos.coords;
+        L.circleMarker([lat,lng],{radius:10,fillColor:"#4285f4",color:"#fff",weight:3,fillOpacity:1})
+          .addTo(map).bindPopup(lang==="kg"?"Сиз бул жердесиз 📍":lang==="en"?"You are here 📍":"Вы здесь 📍").openPopup();
+      });
+    }
+
+    mapInstanceRef.current={map,markers};
+    return()=>{map.remove();mapInstanceRef.current=null;};
+  },[]);
+
+  const flyTo=(block)=>{
+    setActiveBlock(block.id);
+    if(mapInstanceRef.current){
+      const{map,markers}=mapInstanceRef.current;
+      map.flyTo([block.lat,block.lng],19,{duration:0.8});
+      markers[block.id]?.openPopup();
+    }
+  };
+
+  const mapTitle={ru:"Карта кампуса AIU",kg:"AIU кампусунун картасы",en:"AIU Campus Map"};
+  const mapSub={ru:"Нажми на блок — узнай что внутри",kg:"Блокту басып — эмне бар экенин бил",en:"Tap a block to see what's inside"};
+  const myLocation={ru:"📍 Моё место",kg:"📍 Менин жерим",en:"📍 My location"};
+
+  return(
+    <div style={{maxWidth:740,margin:"0 auto"}}>
+      <div style={{marginBottom:16}}>
+        <h2 style={{fontWeight:900,fontSize:20,color:C.textDark,margin:0}}>{mapTitle[lang]}</h2>
+        <p style={{fontSize:13,color:C.textMuted,marginTop:4}}>{mapSub[lang]}</p>
+      </div>
+      <div ref={mapRef} style={{height:420,borderRadius:12,overflow:"hidden",border:`1px solid ${C.border}`,marginBottom:16}}/>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))",gap:10}}>
+        {BLOCKS.map(block=>(
+          <div key={block.id} onClick={()=>flyTo(block)}
+            style={{background:activeBlock===block.id?block.color:C.cardBg,border:`1.5px solid ${activeBlock===block.id?block.color:C.border}`,borderLeft:`4px solid ${block.color}`,borderRadius:10,padding:"12px 14px",cursor:"pointer",transition:"all 0.2s"}}
+            onMouseEnter={e=>e.currentTarget.style.boxShadow="0 4px 12px rgba(0,0,0,0.12)"}
+            onMouseLeave={e=>e.currentTarget.style.boxShadow="none"}>
+            <div style={{fontWeight:800,fontSize:14,color:activeBlock===block.id?C.white:C.textDark}}>{block.emoji} {block[lang]?.name}</div>
+            <div style={{fontSize:11,color:activeBlock===block.id?"rgba(255,255,255,0.8)":C.textMuted,marginTop:4}}>{block[lang]?.desc}</div>
+          </div>
+        ))}
+      </div>
+      <p style={{fontSize:11,color:C.textMuted,marginTop:12,textAlign:"center"}}>⚠️ {lang==="kg"?"Блоктордун жайгашуусу болжолдуу":lang==="en"?"Block positions are approximate":"Позиции блоков приблизительные"}</p>
+    </div>
+  );
+}
 
 export default function OrientAT(){
   const[lang,setLang]=useState("ru");
@@ -191,7 +302,7 @@ export default function OrientAT(){
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
-          system:SYSTEM_BASE+"\n\n"+t.systemLang,
+          lang,
           messages:nm.slice(1).map(m=>({role:m.role,content:m.content}))
         })
       });
@@ -230,7 +341,7 @@ export default function OrientAT(){
                 <button key={l} onClick={()=>switchLang(l)} style={{padding:"5px 12px",borderRadius:4,border:"none",background:lang===l?C.red:"transparent",color:C.white,fontSize:11,fontWeight:lang===l?700:400,cursor:"pointer",transition:"background 0.15s"}}>{lb}</button>
               ))}
             </div>
-            {[["home",0],["quiz",1],["chat",2]].map(([s,i])=>(
+            {[["home",0],["quiz",1],["chat",2],["map",3]].map(([s,i])=>(
               <button key={s} onClick={()=>s==="quiz"?resetQuiz():setScreen(s)}
                 style={{padding:"8px 18px",border:"none",background:screen===s?C.red:"transparent",color:C.white,fontSize:13,cursor:"pointer",fontWeight:screen===s?700:400,borderRadius:6,transition:"background 0.15s"}}>
                 {t.nav[i]}
@@ -404,6 +515,11 @@ export default function OrientAT(){
               <button onClick={()=>setScreen("chat")} style={{padding:"11px 20px",borderRadius:8,border:"none",background:C.red,color:C.white,fontWeight:700,fontSize:13,cursor:"pointer"}}>{t.askBot}</button>
             </div>
           </div>
+        )}
+
+        {/* MAP */}
+        {screen==="map"&&(
+          <MapScreen lang={lang} t={t}/>
         )}
 
         {/* CHAT */}
