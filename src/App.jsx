@@ -1,11 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import L from "leaflet";
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
-  iconUrl:"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
-  shadowUrl:"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
-});
 
 /* ══ COLORS ══
    Purple:  #2D2752
@@ -191,83 +184,64 @@ const BLOCKS = [
    en:{name:"Block E",desc:"Medical Faculty"}},
 ];
 
-function MapScreen({lang,t}){
-  const mapRef=useRef(null);
-  const mapInstanceRef=useRef(null);
+function MapScreen({lang}){
   const [activeBlock,setActiveBlock]=useState(null);
 
-  useEffect(()=>{
-    if(!mapRef.current||mapInstanceRef.current)return;
-    const map=L.map(mapRef.current,{center:[42.8222,74.5865],zoom:18});
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
-      attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a>'
-    }).addTo(map);
-
-    const markers={};
-    BLOCKS.forEach(block=>{
-      const circle=L.circleMarker([block.lat,block.lng],{
-        radius:22,fillColor:block.color,color:"#fff",weight:3,opacity:1,fillOpacity:0.95
-      }).addTo(map);
-
-      const icon=L.divIcon({
-        html:`<div style="font-weight:900;font-size:13px;color:#fff;text-align:center;line-height:22px;width:22px">${block.id}</div>`,
-        iconSize:[22,22],iconAnchor:[11,11],className:""
-      });
-      L.marker([block.lat,block.lng],{icon}).addTo(map);
-
-      circle.bindPopup(`
-        <div style="font-family:'Segoe UI',sans-serif;min-width:170px;padding:4px">
-          <div style="font-weight:800;font-size:14px;margin-bottom:4px">${block.emoji} ${block[lang]?.name}</div>
-          <div style="font-size:12px;color:#555">${block[lang]?.desc}</div>
-        </div>
-      `);
-      markers[block.id]=circle;
-    });
-
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(pos=>{
-        const{latitude:lat,longitude:lng}=pos.coords;
-        L.circleMarker([lat,lng],{radius:10,fillColor:"#4285f4",color:"#fff",weight:3,fillOpacity:1})
-          .addTo(map).bindPopup(lang==="kg"?"Сиз бул жердесиз 📍":lang==="en"?"You are here 📍":"Вы здесь 📍").openPopup();
-      });
-    }
-
-    mapInstanceRef.current={map,markers};
-    return()=>{map.remove();mapInstanceRef.current=null;};
-  },[]);
-
-  const flyTo=(block)=>{
-    setActiveBlock(block.id);
-    if(mapInstanceRef.current){
-      const{map,markers}=mapInstanceRef.current;
-      map.flyTo([block.lat,block.lng],19,{duration:0.8});
-      markers[block.id]?.openPopup();
-    }
-  };
-
   const mapTitle={ru:"Карта кампуса AIU",kg:"AIU кампусунун картасы",en:"AIU Campus Map"};
-  const mapSub={ru:"Нажми на блок — узнай что внутри",kg:"Блокту басып — эмне бар экенин бил",en:"Tap a block to see what's inside"};
-  const myLocation={ru:"📍 Моё место",kg:"📍 Менин жерим",en:"📍 My location"};
+  const mapSub={ru:"Ала-Тоо · ул. Анкара 1/8, Бишкек · Нажми на блок для деталей",kg:"Ала-Тоо · Анкара 1/8, Бишкек · Блок жөнүндө маалымат алуу үчүн басыңыз",en:"Ala-Too · Ankara St 1/8, Bishkek · Tap a block for details"};
+  const open2gis={ru:"Открыть в 2ГИС →",kg:"2ГИСте ачуу →",en:"Open in 2GIS →"};
 
   return(
-    <div style={{maxWidth:740,margin:"0 auto"}}>
-      <div style={{marginBottom:16}}>
-        <h2 style={{fontWeight:900,fontSize:20,color:C.textDark,margin:0}}>{mapTitle[lang]}</h2>
-        <p style={{fontSize:13,color:C.textMuted,marginTop:4}}>{mapSub[lang]}</p>
+    <div style={{maxWidth:800,margin:"0 auto"}}>
+      <div style={{marginBottom:16,display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:8}}>
+        <div>
+          <h2 style={{fontWeight:900,fontSize:20,color:C.textDark,margin:0}}>{mapTitle[lang]}</h2>
+          <p style={{fontSize:12,color:C.textMuted,marginTop:4}}>{mapSub[lang]}</p>
+        </div>
+        <a href="https://2gis.kg/bishkek/search/Ала-Тоо%20Международный%20Университет" target="_blank" rel="noreferrer"
+          style={{padding:"8px 16px",borderRadius:8,background:C.purple,color:C.white,fontSize:12,fontWeight:700,textDecoration:"none",whiteSpace:"nowrap"}}>
+          {open2gis[lang]}
+        </a>
       </div>
-      <div ref={mapRef} style={{height:420,borderRadius:12,overflow:"hidden",border:`1px solid ${C.border}`,marginBottom:16}}/>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))",gap:10}}>
+
+      {/* 2GIS iframe */}
+      <div style={{borderRadius:12,overflow:"hidden",border:`1px solid ${C.border}`,marginBottom:16,boxShadow:"0 2px 12px rgba(45,39,82,0.1)"}}>
+        <iframe
+          src="https://widgets.2gis.com/widget?type=firmsonmap&options=%7B%22pos%22%3A%7B%22lat%22%3A42.82219%2C%22lon%22%3A74.58620%2C%22zoom%22%3A18%7D%7D"
+          width="100%"
+          height="420"
+          frameBorder="0"
+          allowFullScreen
+          title="AIU Campus Map"
+          style={{display:"block"}}
+        />
+      </div>
+
+      {/* Block cards */}
+      <h3 style={{fontWeight:700,fontSize:14,color:C.textDark,marginBottom:10}}>
+        {lang==="kg"?"Блоктор":"Блоки кампуса"}
+      </h3>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))",gap:10}}>
         {BLOCKS.map(block=>(
-          <div key={block.id} onClick={()=>flyTo(block)}
+          <div key={block.id}
+            onClick={()=>setActiveBlock(activeBlock===block.id?null:block.id)}
             style={{background:activeBlock===block.id?block.color:C.cardBg,border:`1.5px solid ${activeBlock===block.id?block.color:C.border}`,borderLeft:`4px solid ${block.color}`,borderRadius:10,padding:"12px 14px",cursor:"pointer",transition:"all 0.2s"}}
-            onMouseEnter={e=>e.currentTarget.style.boxShadow="0 4px 12px rgba(0,0,0,0.12)"}
+            onMouseEnter={e=>e.currentTarget.style.boxShadow="0 4px 12px rgba(0,0,0,0.1)"}
             onMouseLeave={e=>e.currentTarget.style.boxShadow="none"}>
-            <div style={{fontWeight:800,fontSize:14,color:activeBlock===block.id?C.white:C.textDark}}>{block.emoji} {block[lang]?.name}</div>
-            <div style={{fontSize:11,color:activeBlock===block.id?"rgba(255,255,255,0.8)":C.textMuted,marginTop:4}}>{block[lang]?.desc}</div>
+            <div style={{fontWeight:800,fontSize:14,color:activeBlock===block.id?C.white:C.textDark,marginBottom:4}}>
+              {block.emoji} {block[lang]?.name}
+            </div>
+            <div style={{fontSize:11,color:activeBlock===block.id?"rgba(255,255,255,0.85)":C.textMuted,lineHeight:1.5}}>
+              {block[lang]?.desc}
+            </div>
           </div>
         ))}
       </div>
-      <p style={{fontSize:11,color:C.textMuted,marginTop:12,textAlign:"center"}}>⚠️ {lang==="kg"?"Блоктордун жайгашуусу болжолдуу":lang==="en"?"Block positions are approximate":"Позиции блоков приблизительные"}</p>
+
+      <a href="https://2gis.kg/bishkek/search/Ала-Тоо%20Международный%20Университет" target="_blank" rel="noreferrer"
+        style={{display:"block",marginTop:16,padding:"13px",borderRadius:10,background:C.purple,color:C.white,fontWeight:700,fontSize:14,textAlign:"center",textDecoration:"none"}}>
+        🗺️ {open2gis[lang]}
+      </a>
     </div>
   );
 }
