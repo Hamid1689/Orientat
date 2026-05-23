@@ -197,14 +197,55 @@ const PREP_COURSE = {
 
 function MapScreen({lang}){
   const [activeBlock,setActiveBlock]=useState(null);
-
   const mapTitle={ru:"Карта кампуса AIU",kg:"AIU кампусунун картасы",en:"AIU Campus Map"};
-  const mapSub={ru:"Ала-Тоо · ул. Анкара 1/8, Бишкек · Нажми на блок для деталей",kg:"Ала-Тоо · Анкара 1/8, Бишкек · Блок жөнүндө маалымат алуу үчүн басыңыз",en:"Ala-Too · Ankara St 1/8, Bishkek · Tap a block for details"};
+  const mapSub={ru:"Нажми на блок для деталей · ул. Анкара 1/8, Бишкек",kg:"Блок үчүн басыңыз · Анкара 1/8, Бишкек",en:"Tap a block for details · Ankara St 1/8, Bishkek"};
   const open2gis={ru:"Открыть в 2ГИС →",kg:"2ГИСте ачуу →",en:"Open in 2GIS →"};
+  const blk=activeBlock?BLOCKS.find(b=>b.id===activeBlock):null;
+
+  const SVGBG="#1e1b4b";
+  const ROAD="#374151";
+  const UNL="rgba(100,104,140,0.55)";
+  const GRN="#15803D";
+  const bldRed="#D50D1F";
+
+  /* Clickable labeled block */
+  const Blk=({id,x,y,w,h})=>{
+    const b=BLOCKS.find(b=>b.id===id);
+    if(!b)return null;
+    const isAct=activeBlock===id;
+    const fill=isAct?b.color:bldRed;
+    const cx=x+w/2, cy=y+h/2;
+    return(
+      <g onClick={()=>setActiveBlock(isAct?null:id)} style={{cursor:"pointer"}}>
+        <rect x={x} y={y} width={w} height={h} fill={fill} stroke={isAct?"white":"rgba(255,255,255,0.45)"} strokeWidth={isAct?3:1.5} rx="3"/>
+        <line x1={x} y1={y} x2={cx} y2={cy} stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+        <line x1={x+w} y1={y} x2={cx} y2={cy} stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+        <line x1={x} y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+        <line x1={x+w} y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+        <text x={cx} y={cy+5} fill="white" fontSize={Math.min(w,h)>55?13:10} fontWeight="800" textAnchor="middle" style={{fontFamily:"sans-serif",pointerEvents:"none",userSelect:"none"}}>{id}</text>
+      </g>
+    );
+  };
+
+  /* Unlabeled gray building */
+  const Gray=({x,y,w,h,label=null})=>{
+    const cx=x+w/2, cy=y+h/2;
+    return(
+      <g>
+        <rect x={x} y={y} width={w} height={h} fill={UNL} stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" rx="2"/>
+        <line x1={x} y1={y} x2={cx} y2={cy} stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+        <line x1={x+w} y1={y} x2={cx} y2={cy} stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+        <line x1={x} y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+        <line x1={x+w} y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+        {label&&<text x={cx} y={cy+4} fill="rgba(255,255,255,0.7)" fontSize="8.5" fontWeight="600" textAnchor="middle" style={{fontFamily:"sans-serif",userSelect:"none"}}>{label}</text>}
+      </g>
+    );
+  };
 
   return(
     <div style={{maxWidth:800,margin:"0 auto"}}>
-      <div style={{marginBottom:16,display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:8}}>
+      {/* Header */}
+      <div style={{marginBottom:14,display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:8}}>
         <div>
           <h2 style={{fontWeight:900,fontSize:20,color:C.textDark,margin:0}}>{mapTitle[lang]}</h2>
           <p style={{fontSize:12,color:C.textMuted,marginTop:4}}>{mapSub[lang]}</p>
@@ -215,28 +256,77 @@ function MapScreen({lang}){
         </a>
       </div>
 
-      {/* Campus photo */}
-      <div style={{borderRadius:12,overflow:"hidden",border:`1px solid ${C.border}`,marginBottom:16,boxShadow:"0 2px 12px rgba(45,39,82,0.1)"}}>
-        <img
-          src="/campus-map.png"
-          alt="AIU Campus Map"
-          style={{width:"100%",display:"block",objectFit:"contain",background:C.bg}}
-          onError={e=>{e.currentTarget.style.display="none";}}
-        />
+      {/* SVG Campus Map */}
+      <div style={{borderRadius:12,overflow:"hidden",border:`1px solid ${C.border}`,marginBottom:14,boxShadow:"0 2px 12px rgba(45,39,82,0.15)"}}>
+        <svg viewBox="0 0 800 420" style={{width:"100%",display:"block"}} xmlns="http://www.w3.org/2000/svg">
+          {/* Background */}
+          <rect width="800" height="420" fill={SVGBG}/>
+          {/* Top road */}
+          <rect x="0" y="0" width="800" height="44" fill={ROAD}/>
+          {/* Bottom road */}
+          <rect x="0" y="380" width="800" height="40" fill={ROAD}/>
+          {/* Center horizontal road (left section) */}
+          <rect x="0" y="238" width="378" height="9" fill={ROAD}/>
+          {/* Vertical divider (right lower section) */}
+          <rect x="547" y="248" width="7" height="132" fill={ROAD}/>
+
+          {/* Entry labels */}
+          <text x="50" y="28" fill={bldRed} fontSize="11" fontWeight="800" textAnchor="middle" style={{fontFamily:"sans-serif"}}>↑Entry↑</text>
+          <text x="750" y="28" fill={bldRed} fontSize="11" fontWeight="800" textAnchor="middle" style={{fontFamily:"sans-serif"}}>↓Entry↓</text>
+          <text x="614" y="398" fill={bldRed} fontSize="11" fontWeight="800" textAnchor="middle" style={{fontFamily:"sans-serif"}}>↑Entry↑</text>
+
+          {/* ── UPPER LEFT CLUSTER ── */}
+          <Blk id="D" x={22} y={54} w={100} h={175}/>
+          <Blk id="E" x={130} y={90} w={128} h={138}/>
+          {/* Large unnamed gray center */}
+          <Gray x={273} y={54} w={182} h={148}/>
+
+          {/* ── UPPER RIGHT CLUSTER ── */}
+          {/* Sport Ground — two green rectangles */}
+          <rect x={577} y={54} width={88} height={62} fill={GRN} stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" rx="2"/>
+          <text x="621" y="82" fill="white" fontSize="8" fontWeight="700" textAnchor="middle" style={{fontFamily:"sans-serif",userSelect:"none"}}>Sport Ground</text>
+          <rect x={675} y={54} width={104} height={62} fill={GRN} stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" rx="2"/>
+
+          {/* Cantine (above C block) */}
+          <Gray x={712} y={102} w={77} h={30} label="Cantine"/>
+
+          {/* H block */}
+          <Blk id="H" x={490} y={148} w={74} h={64}/>
+
+          {/* Sport Hall */}
+          <Gray x={572} y={148} w={132} h={64} label="Sport Hall"/>
+
+          {/* C block */}
+          <Blk id="C" x={712} y={148} w={77} h={80}/>
+
+          {/* ── LOWER LEFT CLUSTER ── */}
+          <Gray x={22}  y={256} w={58}  h={116}/>
+          <Gray x={210} y={256} w={104} h={116}/>
+          {/* U-shaped building */}
+          <Gray x={320} y={250} w={52}  h={142}/>
+          <Gray x={372} y={250} w={110} h={52}/>
+          <Gray x={372} y={340} w={110} h={52}/>
+          {/* Thin vertical on far right */}
+          <Gray x={769} y={256} w={20}  h={72}/>
+
+          {/* ── LOWER RIGHT CLUSTER ── */}
+          <text x="543" y="296" fill="rgba(255,255,255,0.55)" fontSize="9" fontWeight="600" textAnchor="end" style={{fontFamily:"sans-serif",userSelect:"none"}}>Dining Hall →</text>
+          <Blk id="B" x={440} y={308} w={100} h={66}/>
+          <Blk id="A" x={662} y={257} w={118} h={117}/>
+        </svg>
       </div>
 
-      {/* 2GIS iframe */}
-      <div style={{borderRadius:12,overflow:"hidden",border:`1px solid ${C.border}`,marginBottom:16,boxShadow:"0 2px 12px rgba(45,39,82,0.1)"}}>
-        <iframe
-          src="https://widgets.2gis.com/widget?type=firmsonmap&options=%7B%22pos%22%3A%7B%22lat%22%3A42.82219%2C%22lon%22%3A74.58620%2C%22zoom%22%3A18%7D%7D"
-          width="100%"
-          height="420"
-          frameBorder="0"
-          allowFullScreen
-          title="AIU Campus Map"
-          style={{display:"block"}}
-        />
-      </div>
+      {/* Selected block popup */}
+      {blk&&(
+        <div style={{background:blk.color,borderRadius:10,padding:"12px 16px",marginBottom:14,display:"flex",alignItems:"center",gap:12}}>
+          <span style={{fontSize:24}}>{blk.emoji}</span>
+          <div style={{flex:1}}>
+            <div style={{fontWeight:800,fontSize:14,color:C.white}}>{blk[lang]?.name}</div>
+            <div style={{fontSize:12,color:"rgba(255,255,255,0.82)",marginTop:2}}>{blk[lang]?.desc}</div>
+          </div>
+          <span onClick={()=>setActiveBlock(null)} style={{color:"rgba(255,255,255,0.5)",fontSize:18,cursor:"pointer",padding:"0 4px"}}>✕</span>
+        </div>
+      )}
 
       {/* Block cards */}
       <h3 style={{fontWeight:700,fontSize:14,color:C.textDark,marginBottom:10}}>
