@@ -202,49 +202,40 @@ function MapScreen({lang}){
   const open2gis={ru:"Открыть в 2ГИС →",kg:"2ГИСте ачуу →",en:"Open in 2GIS →"};
   const blk=activeBlock?BLOCKS.find(b=>b.id===activeBlock):null;
 
-  const SVGBG="#1e1b4b";
-  const ROAD="#374151";
-  const UNL="rgba(100,104,140,0.55)";
-  const GRN="#15803D";
-  const bldRed="#D50D1F";
+  const BG="#1e1b4b", ROAD="#374151", UNL="rgba(100,104,140,0.52)", GRN="#15803D", RED="#D50D1F";
+  const TXT={fontFamily:"sans-serif",userSelect:"none"};
 
-  /* Clickable labeled block */
+  /* Roof diagonals (X pattern like original) */
+  const Roof=({x,y,w,h})=>{const cx=x+w/2,cy=y+h/2;return(<>
+    <line x1={x}   y1={y}   x2={cx} y2={cy} stroke="rgba(255,255,255,0.28)" strokeWidth="1.2"/>
+    <line x1={x+w} y1={y}   x2={cx} y2={cy} stroke="rgba(255,255,255,0.28)" strokeWidth="1.2"/>
+    <line x1={x}   y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.28)" strokeWidth="1.2"/>
+    <line x1={x+w} y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.28)" strokeWidth="1.2"/>
+  </>);};
+
+  /* Clickable campus block */
   const Blk=({id,x,y,w,h})=>{
-    const b=BLOCKS.find(b=>b.id===id);
-    if(!b)return null;
-    const isAct=activeBlock===id;
-    const fill=isAct?b.color:bldRed;
-    const cx=x+w/2, cy=y+h/2;
-    return(
-      <g onClick={()=>setActiveBlock(isAct?null:id)} style={{cursor:"pointer"}}>
-        <rect x={x} y={y} width={w} height={h} fill={fill} stroke={isAct?"white":"rgba(255,255,255,0.45)"} strokeWidth={isAct?3:1.5} rx="3"/>
-        <line x1={x} y1={y} x2={cx} y2={cy} stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-        <line x1={x+w} y1={y} x2={cx} y2={cy} stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-        <line x1={x} y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-        <line x1={x+w} y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-        <text x={cx} y={cy+5} fill="white" fontSize={Math.min(w,h)>55?13:10} fontWeight="800" textAnchor="middle" style={{fontFamily:"sans-serif",pointerEvents:"none",userSelect:"none"}}>{id}</text>
-      </g>
-    );
+    const b=BLOCKS.find(b=>b.id===id); if(!b)return null;
+    const on=activeBlock===id;
+    return(<g onClick={()=>setActiveBlock(on?null:id)} style={{cursor:"pointer"}}>
+      <rect x={x} y={y} width={w} height={h} fill={on?b.color:RED} stroke={on?"white":"rgba(255,255,255,0.55)"} strokeWidth={on?3:2} rx="2"/>
+      <Roof x={x} y={y} w={w} h={h}/>
+    </g>);
   };
 
-  /* Unlabeled gray building */
-  const Gray=({x,y,w,h,label=null})=>{
-    const cx=x+w/2, cy=y+h/2;
-    return(
-      <g>
-        <rect x={x} y={y} width={w} height={h} fill={UNL} stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" rx="2"/>
-        <line x1={x} y1={y} x2={cx} y2={cy} stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <line x1={x+w} y1={y} x2={cx} y2={cy} stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <line x1={x} y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <line x1={x+w} y1={y+h} x2={cx} y2={cy} stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        {label&&<text x={cx} y={cy+4} fill="rgba(255,255,255,0.7)" fontSize="8.5" fontWeight="600" textAnchor="middle" style={{fontFamily:"sans-serif",userSelect:"none"}}>{label}</text>}
-      </g>
-    );
-  };
+  /* Non-clickable gray building */
+  const Gray=({x,y,w,h})=>(<g>
+    <rect x={x} y={y} width={w} height={h} fill={UNL} stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" rx="1"/>
+    <Roof x={x} y={y} w={w} h={h}/>
+  </g>);
+
+  /* Small label text */
+  const Lbl=({x,y,anchor="middle",children})=>(
+    <text x={x} y={y} fill="white" fontSize="9" fontWeight="700" textAnchor={anchor} style={TXT}>{children}</text>
+  );
 
   return(
     <div style={{maxWidth:800,margin:"0 auto"}}>
-      {/* Header */}
       <div style={{marginBottom:14,display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:8}}>
         <div>
           <h2 style={{fontWeight:900,fontSize:20,color:C.textDark,margin:0}}>{mapTitle[lang]}</h2>
@@ -256,63 +247,88 @@ function MapScreen({lang}){
         </a>
       </div>
 
-      {/* SVG Campus Map */}
       <div style={{borderRadius:12,overflow:"hidden",border:`1px solid ${C.border}`,marginBottom:14,boxShadow:"0 2px 12px rgba(45,39,82,0.15)"}}>
         <svg viewBox="0 0 800 420" style={{width:"100%",display:"block"}} xmlns="http://www.w3.org/2000/svg">
-          {/* Background */}
-          <rect width="800" height="420" fill={SVGBG}/>
-          {/* Top road */}
-          <rect x="0" y="0" width="800" height="44" fill={ROAD}/>
-          {/* Bottom road */}
-          <rect x="0" y="380" width="800" height="40" fill={ROAD}/>
-          {/* Center horizontal road (left section) */}
-          <rect x="0" y="238" width="378" height="9" fill={ROAD}/>
-          {/* Vertical divider (right lower section) */}
-          <rect x="547" y="248" width="7" height="132" fill={ROAD}/>
+          <rect width="800" height="420" fill={BG}/>
 
-          {/* Entry labels */}
-          <text x="50" y="28" fill={bldRed} fontSize="11" fontWeight="800" textAnchor="middle" style={{fontFamily:"sans-serif"}}>↑Entry↑</text>
-          <text x="750" y="28" fill={bldRed} fontSize="11" fontWeight="800" textAnchor="middle" style={{fontFamily:"sans-serif"}}>↓Entry↓</text>
-          <text x="614" y="398" fill={bldRed} fontSize="11" fontWeight="800" textAnchor="middle" style={{fontFamily:"sans-serif"}}>↑Entry↑</text>
+          {/* ── ROADS ── */}
+          <rect x="0"   y="0"   width="800" height="55"  fill={ROAD}/>
+          <rect x="0"   y="385" width="800" height="35"  fill={ROAD}/>
+          {/* short horizontal divider (left half only, like original) */}
+          <rect x="0"   y="222" width="212" height="7"   fill={ROAD}/>
+          {/* vertical divider between B and A (lower right) */}
+          <rect x="690" y="228" width="7"   height="157" fill={ROAD}/>
 
-          {/* ── UPPER LEFT CLUSTER ── */}
-          <Blk id="D" x={22} y={54} w={100} h={175}/>
-          <Blk id="E" x={130} y={90} w={128} h={138}/>
-          {/* Large unnamed gray center */}
-          <Gray x={273} y={54} w={182} h={148}/>
+          {/* ── ENTRIES ── */}
+          <text x="38"  y="32" fill={RED} fontSize="11" fontWeight="800" textAnchor="middle" style={TXT}>↑Entry↑</text>
+          <text x="762" y="32" fill={RED} fontSize="11" fontWeight="800" textAnchor="middle" style={TXT}>↓Entry↓</text>
+          <text x="694" y="408" fill={RED} fontSize="11" fontWeight="800" textAnchor="middle" style={TXT}>↑Entry↑</text>
 
-          {/* ── UPPER RIGHT CLUSTER ── */}
-          {/* Sport Ground — two green rectangles */}
-          <rect x={577} y={54} width={88} height={62} fill={GRN} stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" rx="2"/>
-          <text x="621" y="82" fill="white" fontSize="8" fontWeight="700" textAnchor="middle" style={{fontFamily:"sans-serif",userSelect:"none"}}>Sport Ground</text>
-          <rect x={675} y={54} width={104} height={62} fill={GRN} stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" rx="2"/>
+          {/* ══════════ UPPER LEFT ══════════ */}
+          {/* D block — large square, top-left corner */}
+          <Blk id="D" x={16}  y={68}  w={78}  h={152}/>
+          {/* E block — right of D, starts lower */}
+          <Blk id="E" x={100} y={108} w={98}  h={112}/>
+          {/* Large unnamed gray — right of E, same top as D */}
+          <Gray        x={204} y={68}  w={180} h={152}/>
 
-          {/* Cantine (above C block) */}
-          <Gray x={712} y={102} w={77} h={30} label="Cantine"/>
+          {/* D / E labels below (between upper and lower sections) */}
+          <Lbl x={55}  y={220}>↑ D block</Lbl>
+          <Lbl x={149} y={220}>↑ E block</Lbl>
 
-          {/* H block */}
-          <Blk id="H" x={490} y={148} w={74} h={64}/>
+          {/* ══════════ UPPER RIGHT ══════════ */}
+          {/* Sport Ground label + two green rects (far top-right) */}
+          <Lbl x={558} y={88}  anchor="start">Sport</Lbl>
+          <Lbl x={558} y={100} anchor="start">Ground →</Lbl>
+          <rect x={668} y={68} width={64} height={42} fill={GRN} stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" rx="2"/>
+          <rect x={736} y={68} width={62} height={42} fill={GRN} stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" rx="2"/>
 
-          {/* Sport Hall */}
-          <Gray x={572} y={148} w={132} h={64} label="Sport Hall"/>
+          {/* Cantine label + small rect (above C block) */}
+          <Lbl x={700} y={132} anchor="end">Cantine →</Lbl>
+          <Gray x={746} y={136} w={52}  h={22}/>
 
-          {/* C block */}
-          <Blk id="C" x={712} y={148} w={77} h={80}/>
+          {/* H block label + rect */}
+          <Lbl x={492} y={157}>H block</Lbl>
+          <Blk id="H" x={455} y={162} w={74}  h={56}/>
 
-          {/* ── LOWER LEFT CLUSTER ── */}
-          <Gray x={22}  y={256} w={58}  h={116}/>
-          <Gray x={210} y={256} w={104} h={116}/>
-          {/* U-shaped building */}
-          <Gray x={320} y={250} w={52}  h={142}/>
-          <Gray x={372} y={250} w={110} h={52}/>
-          <Gray x={372} y={340} w={110} h={52}/>
-          {/* Thin vertical on far right */}
-          <Gray x={769} y={256} w={20}  h={72}/>
+          {/* Sport Hall label + L-shaped rect */}
+          <Lbl x={601} y={157}>Sport Hall</Lbl>
+          {/* L-shape: left taller part + right shorter part */}
+          <Gray x={535} y={162} w={68}  h={56}/>
+          <Gray x={603} y={190} w={62}  h={28}/>
 
-          {/* ── LOWER RIGHT CLUSTER ── */}
-          <text x="543" y="296" fill="rgba(255,255,255,0.55)" fontSize="9" fontWeight="600" textAnchor="end" style={{fontFamily:"sans-serif",userSelect:"none"}}>Dining Hall →</text>
-          <Blk id="B" x={440} y={308} w={100} h={66}/>
-          <Blk id="A" x={662} y={257} w={118} h={117}/>
+          {/* C block label + rect */}
+          <Lbl x={761} y={157}>C block</Lbl>
+          <Blk id="C" x={725} y={162} w={73}  h={56}/>
+
+          {/* ══════════ LOWER LEFT ══════════ */}
+          {/* Small narrow gray column */}
+          <Gray x={30}  y={234} w={42}  h={143}/>
+          {/* Medium gray rectangle */}
+          <Gray x={208} y={234} w={58}  h={130}/>
+
+          {/* Reversed-C shape (opens to the right) */}
+          {/* left vertical */}
+          <Gray x={316} y={228} w={31}  h={157}/>
+          {/* top horizontal bar */}
+          <Gray x={347} y={228} w={167} h={42}/>
+          {/* small standalone rect inside the opening */}
+          <Gray x={396} y={274} w={45}  h={44}/>
+          {/* bottom horizontal bar */}
+          <Gray x={347} y={349} w={167} h={36}/>
+
+          {/* ══════════ LOWER RIGHT ══════════ */}
+          {/* Dining Hall label */}
+          <Lbl x={686} y={255} anchor="end">Dining Hall →</Lbl>
+
+          {/* B block label + rect */}
+          <Lbl x={640} y={297}>B block</Lbl>
+          <Blk id="B" x={605} y={302} w={70}  h={80}/>
+
+          {/* A block — large, far right */}
+          <Blk id="A" x={700} y={228} w={98}  h={157}/>
+          {/* A block label below */}
+          <Lbl x={692} y={392} anchor="end">↑ A block</Lbl>
         </svg>
       </div>
 
