@@ -182,7 +182,18 @@ const BLOCKS = [
    ru:{name:"Блок E",desc:"Медицинский факультет"},
    kg:{name:"Блок E",desc:"Медицина факультети"},
    en:{name:"Block E",desc:"Medical Faculty"}},
+  {id:"H",emoji:"📝",lat:42.82228,lng:74.58645,color:"#7E22CE",
+   ru:{name:"Блок H",desc:"Подготовительный курс английского языка"},
+   kg:{name:"Блок H",desc:"Англис тилинин даярдоо курсу"},
+   en:{name:"Block H",desc:"English Language Preparatory Course"}},
 ];
+
+const PREP_COURSE = {
+  kr:225000, int:315000, emoji:"📝",
+  ru:{name:"Подготовительный курс",tag:"Английский язык",note:"Для тех, кто ещё не владеет английским на уровне B1/B2",desc:"Интенсивная подготовка к обучению на английском языке. После курса студент поступает на основную программу AIU."},
+  kg:{name:"Даярдоо курсу",tag:"Англис тили",note:"Англис тилин B1/B2 деңгээлинде билбегендер үчүн",desc:"Англис тилинде окуу үчүн интенсивдүү даярдоо. Курстан кийин студент AIU негизги программасына кирет."},
+  en:{name:"Preparatory Course",tag:"English Language",note:"For students who haven't yet reached B1/B2 English level",desc:"Intensive English language preparation for degree studies. After completing the course students enter the main AIU programme."},
+};
 
 function MapScreen({lang}){
   const [activeBlock,setActiveBlock]=useState(null);
@@ -202,6 +213,16 @@ function MapScreen({lang}){
           style={{padding:"8px 16px",borderRadius:8,background:C.purple,color:C.white,fontSize:12,fontWeight:700,textDecoration:"none",whiteSpace:"nowrap"}}>
           {open2gis[lang]}
         </a>
+      </div>
+
+      {/* Campus photo */}
+      <div style={{borderRadius:12,overflow:"hidden",border:`1px solid ${C.border}`,marginBottom:16,boxShadow:"0 2px 12px rgba(45,39,82,0.1)"}}>
+        <img
+          src="/campus-map.png"
+          alt="AIU Campus Map"
+          style={{width:"100%",display:"block",objectFit:"contain",background:C.bg}}
+          onError={e=>{e.currentTarget.style.display="none";}}
+        />
       </div>
 
       {/* 2GIS iframe */}
@@ -380,6 +401,32 @@ export default function OrientAT(){
                   </div>
                 );
               })}
+            </div>
+
+            {/* PREPARATORY COURSE */}
+            <div style={{marginTop:24}}>
+              <h2 style={{fontWeight:700,fontSize:15,marginBottom:14,color:C.textDark,borderBottom:`2px solid ${C.purple}`,paddingBottom:8}}>
+                {lang==="kg"?"Даярдоо программасы":lang==="en"?"Foundation Programme":"Подготовительная программа"}
+              </h2>
+              <div style={{background:C.purple,border:`1px solid ${C.border}`,borderTop:`4px solid #7E22CE`,borderRadius:12,padding:"20px 22px",cursor:"pointer",transition:"all 0.15s"}}
+                onMouseEnter={e=>{e.currentTarget.style.background="#3a3468";e.currentTarget.style.boxShadow="0 6px 20px rgba(45,39,82,0.25)";}}
+                onMouseLeave={e=>{e.currentTarget.style.background=C.purple;e.currentTarget.style.boxShadow="none";}}>
+                <div style={{display:"flex",alignItems:"flex-start",gap:16,flexWrap:"wrap"}}>
+                  <div style={{width:44,height:44,background:"#7E22CE",borderRadius:10,display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0}}>{PREP_COURSE.emoji}</div>
+                  <div style={{flex:1,minWidth:200}}>
+                    <div style={{fontWeight:800,fontSize:16,color:C.white,marginBottom:4}}>{PREP_COURSE[lang].name}</div>
+                    <span style={{fontSize:11,background:"rgba(126,34,206,0.35)",color:"#d8b4fe",border:"1px solid rgba(126,34,206,0.5)",borderRadius:4,padding:"2px 8px",fontWeight:600}}>{PREP_COURSE[lang].tag}</span>
+                    <p style={{fontSize:13,color:"rgba(255,255,255,0.80)",marginTop:10,marginBottom:8,lineHeight:1.6}}>{PREP_COURSE[lang].desc}</p>
+                    <div style={{fontSize:11,color:"#fcd34d",background:"rgba(251,191,36,0.1)",border:"1px solid rgba(251,191,36,0.25)",borderRadius:6,padding:"6px 10px",display:"inline-block"}}>⚠️ {PREP_COURSE[lang].note}</div>
+                  </div>
+                  <div style={{textAlign:"right",flexShrink:0,minWidth:140,paddingTop:4}}>
+                    <div style={{fontSize:10,color:"rgba(255,255,255,0.45)",fontWeight:700,textTransform:"uppercase",letterSpacing:.7}}>{t.krFee} {t.perYear}</div>
+                    <div style={{fontSize:20,fontWeight:900,color:"#d8b4fe",marginTop:4}}>{t.from}{t.from?" ":""}{fmtFee(PREP_COURSE.kr,t.currency)}</div>
+                    <div style={{marginTop:10,fontSize:10,color:"rgba(255,255,255,0.45)",fontWeight:700,textTransform:"uppercase",letterSpacing:.7}}>{t.intFee}</div>
+                    <div style={{fontSize:14,fontWeight:700,color:"rgba(255,255,255,0.60)",marginTop:2}}>{fmtFee(PREP_COURSE.int,t.currency)}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}

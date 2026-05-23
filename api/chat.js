@@ -16,6 +16,7 @@ ECONOMICS & MANAGEMENT (ORT 110):
 EDUCATION (ORT 110): Филология: 234,000/360,000 | Филол. образование: 234,000/360,000 | Лингвистика: 234,000/360,000 | Педагогика: 216,000/333,000 | Педагогика STEM: 252,000/333,000 | Логопедия: 225,000/333,000
 SOCIAL SCIENCES (ORT 110): МО: 288,000/360,000 | Психология: 270,000/333,000 | Соц. психология: 225,000/333,000 | Журналистика: 243,000/333,000 | Реклама и PR: 252,000/333,000
 MEDICINE (ORT 110 + Biology & Chemistry — REQUIRED): General Medicine: 297,000/405,000
+PREPARATORY COURSE (Подготовительный курс / Даярдоо курсу): 225,000/315,000 — for students who need English training (B1/B2 level) before entering their main programme. Located in Block H.
 Cheapest: Менеджмент дист. 180,000 | Most expensive: Компьютерная инженерия 378,000
 
 DISCOUNTS (only ONE applies):
@@ -23,6 +24,7 @@ ORT: Золотой сертификат→100% | 216-220→50% | 211-215→45% 
 Olympiad: Межд. олимпиада (IMO/IPHO/IBO/ICHO/IIO)→100% | Респ. олимпиада 11кл 1место→100% | 2место→50% | 3место→30%
 Special: Колледж МУА→10% | IT&Business колледж красный диплом→20% | Лицей Сапат→15% | Оба родителя→40% | Один родитель→10% | Семья 4+детей→10%
 Rules: Only ONE discount. Cancelled with 4+ academic debts. Does not renew.
+CAMPUS BLOCKS: A=Library/Admin, B=IT Faculty, C=IT&Business College, D=Education&Social Sciences, E=Medical Faculty, H=Preparatory Course
 Phone: +996(312)63-15-25. www.alatoo.edu.kg`;
 
 const LANG_SUFFIX = {
