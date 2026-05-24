@@ -1,4 +1,4 @@
-export default function Logo({ size = 38 }) {
+export default function Logo({ size = 62 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 243 190" fill="none" xmlns="http://www.w3.org/2000/svg">
       <polygon points="121,0 200,28 121,50 42,28" fill="white"/>
