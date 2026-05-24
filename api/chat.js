@@ -25,14 +25,6 @@ Olympiad: Межд. олимпиада (IMO/IPHO/IBO/ICHO/IIO)→100% | Респ
 Special: Колледж МУА→10% | IT&Business колледж красный диплом→20% | Лицей Сапат→15% | Оба родителя→40% | Один родитель→10% | Семья 4+детей→10%
 Rules: Only ONE discount. Cancelled with 4+ academic debts. Does not renew.
 CAMPUS BLOCKS: A=Library/Admin, B=IT Faculty, C=IT&Business College, D=Education&Social Sciences, E=Medical Faculty, H=Preparatory Course
-
-MASTER'S DEGREE (Магистратура) — 2 years (2.5 distance). Documents accepted: 15 July – 15 September 2026. Phone: +996 998 284 848 (WhatsApp). Email: postgraduate@alatoo.edu.kg
-Programs: Информатика и вычислительная техника | Бизнес-аналитика | Экономика развития | Педагогика | Лингвистика | Международные отношения | Медиа, ИИ и Искусство (Журналистика) | Юриспруденция (Бизнес-право) | Психология | Филология
-Required docs: Диплом бакалавра (оригинал + нотариальная копия), фото 3x4 (2 шт.), копия паспорта, личный листок по учёту кадров. Foreign students: нотариально заверенный перевод паспорта и диплома на кыргызский или русский.
-
-PhD / DOCTORAL (Аспирантура/Докторантура) — contact: +996(312)63-15-25 or postgraduate@alatoo.edu.kg for details.
-
-IT & BUSINESS COLLEGE — offers vocational programmes (среднее профессиональное образование). Located in Block C. Graduates with red diploma get 20% discount on AIU bachelor's tuition. Contact: +996(312)63-15-25.
 Phone: +996(312)63-15-25. www.alatoo.edu.kg`;
 
 const LANG_SUFFIX = {
