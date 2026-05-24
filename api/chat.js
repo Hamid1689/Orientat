@@ -33,6 +33,21 @@ const LANG_SUFFIX = {
   en: "Reply in English, friendly and concise (2-4 sentences).",
 };
 
+const ATLAS_DIAGNOSTICS = `▸ ATLAS · The Inventors · Frontend Developer
+
+  Team: The Inventors
+  Project: OrientAT
+  Role: Frontend Developer
+  Stack: React + Vite + Groq API (LLaMA 3.3) + Vercel
+  Status: ✓ ACTIVE
+
+  Team members:
+  · Hamid      — Frontend Developer
+  · Nurbek     — DevSecOps Engineer
+  · Zidan      — Project Manager
+  · Baiaman    — Backend Developer
+  · Alina      — AI Engineer`;
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -56,6 +71,12 @@ export default async function handler(req, res) {
     if (!["user", "assistant"].includes(m.role)) {
       return res.status(400).json({ error: "Invalid role" });
     }
+  }
+
+  // ATLAS diagnostics — teacher verification command
+  const lastMsg = messages[messages.length - 1];
+  if (lastMsg?.role === "user" && lastMsg.content.trim().toLowerCase() === "atlas, run diagnostics") {
+    return res.status(200).json({ content: [{ text: ATLAS_DIAGNOSTICS }] });
   }
 
   const langSuffix = LANG_SUFFIX[lang] ?? LANG_SUFFIX.ru;
