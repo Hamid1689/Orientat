@@ -1,19 +1,17 @@
-import { C } from "../constants/colors";
-
 export default function Logo({ size = 38 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60" cy="60" r="58" fill={C.purple}/>
-      <circle cx="60" cy="60" r="58" fill="none" stroke={C.red} strokeWidth="3"/>
-      <polygon points="60,18 104,44 60,54 16,44" fill={C.white}/>
-      <rect x="57.5" y="54" width="5" height="18" fill={C.white}/>
-      <circle cx="60" cy="75" r="4" fill={C.white}/>
-      <polygon points="36,57 60,90 84,57 78,57 60,80 42,57" fill={C.red}/>
-      <text x="26" y="70" fontSize="10" fill={C.white} textAnchor="middle">★</text>
-      <text x="94" y="70" fontSize="10" fill={C.white} textAnchor="middle">★</text>
-      <circle cx="60" cy="36" r="9" fill={C.red}/>
-      <circle cx="60" cy="36" r="6" fill={C.white}/>
-      <circle cx="60" cy="36" r="3" fill={C.purple}/>
+    <svg width={size} height={size} viewBox="692 0 243 234" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="692" width="243" height="234" fill="white"/>
+      <path d="M812.5 86L865.837 103.875L812.5 120.375L759.162 103.875L812.5 86Z" fill="#2D2752"/>
+      <path d="M812.376 158.5L822.002 141.884L836 117.5L812.376 124.898L790 117.5L804.374 141.884L812.376 158.5Z" fill="#2D2752"/>
+      <path d="M812.5 120.375L836 117.5L812.5 158.5L789 117.5L812.5 120.375Z" fill="white"/>
+      <path d="M771 113L775 107" stroke="#2D2752" strokeWidth="2"/>
+      <line x1="775" y1="107" x2="775" y2="86" stroke="#2D2752" strokeWidth="2"/>
+      <circle cx="775" cy="82" r="4" fill="#2D2752"/>
+      <text x="796" y="180" fontSize="18" fontWeight="900" fill="#2D2752" fontFamily="Arial">Orient</text>
+      <text x="851" y="180" fontSize="18" fontWeight="900" fill="#CC0000" fontFamily="Arial">AT</text>
+      <text x="800" y="170" fontSize="10" fill="#2D2752" textAnchor="middle">★</text>
+      <text x="825" y="170" fontSize="10" fill="#2D2752" textAnchor="middle">★</text>
     </svg>
   );
 }
