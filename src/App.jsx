@@ -247,29 +247,15 @@ function FaqScreen({lang}){
 }
 
 const DOCS_DATA={
-  bach:{
-    kr:{
-      ru:["Заявление на поступление","Копия паспорта","Оригинал аттестата (диплом) об образовании","6 фотографий 3×4 (цветные)","Оригинал сертификата ОРТ","Заполненный регистрационный лист AIU"],
-      kg:["Кабыл алуу арызы","Паспорттун көчүрмөсү","Орто билим тууралуу аттестаттын оригиналы (диплом)","6 сүрөт 3×4 (түстүү)","ОРТ сертификатынын оригиналы","AIU каттоо барагын толтуруу"],
-      en:["Admission application","Copy of passport","Original school diploma (or college diploma)","6 photos 3×4 (colour)","Original ORT certificate","Completed AIU registration form"],
-    },
-    int:{
-      ru:["Заявление на поступление","Нотариально заверенный диплом об образовании + перевод на русский/англ. язык","Нотариально заверенная копия паспорта + перевод","6 фотографий 3×4 (цветные)","Результаты вступительного экзамена","Заполненный регистрационный лист AIU"],
-      kg:["Кабыл алуу арызы","Билим дипломунун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","Паспорттун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","6 сүрөт 3×4 (түстүү)","Кириш экзамен жыйынтыктары","AIU каттоо барагын толтуруу"],
-      en:["Admission application","Notarised education diploma + Russian/English translation","Notarised copy of passport + translation","6 photos 3×4 (colour)","Entrance exam results","Completed AIU registration form"],
-    },
+  kr:{
+    ru:["Заявление на поступление","Копия паспорта","Оригинал аттестата (диплом) об образовании","6 фотографий 3×4 (цветные)","Оригинал сертификата ОРТ","Заполненный регистрационный лист AIU"],
+    kg:["Кабыл алуу арызы","Паспорттун көчүрмөсү","Орто билим тууралуу аттестаттын оригиналы (диплом)","6 сүрөт 3×4 (түстүү)","ОРТ сертификатынын оригиналы","AIU каттоо барагын толтуруу"],
+    en:["Admission application","Copy of passport","Original school diploma (or college diploma)","6 photos 3×4 (colour)","Original ORT certificate","Completed AIU registration form"],
   },
-  master:{
-    kr:{
-      ru:["Оригинал диплома о высшем образовании","Академическая справка (транскрипт)","Копия паспорта","Заявление на поступление","6 фотографий 3×4 (цветные)","Заполненный регистрационный лист AIU"],
-      kg:["Жогорку билим дипломунун оригиналы","Академиялык маалым кат (транскрипт)","Паспорттун көчүрмөсү","Кабыл алуу арызы","6 сүрөт 3×4 (түстүү)","AIU каттоо барагын толтуруу"],
-      en:["Original bachelor's diploma","Academic transcript","Copy of passport","Admission application","6 photos 3×4 (colour)","Completed AIU registration form"],
-    },
-    int:{
-      ru:["Нотариально заверенный диплом о высшем образовании + перевод","Нотариально заверенный транскрипт + перевод","Нотариально заверенная копия паспорта + перевод","Заявление на поступление","6 фотографий 3×4 (цветные)","Заполненный регистрационный лист AIU"],
-      kg:["Жогорку билим дипломунун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","Транскрипттин нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","Паспорттун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","Кабыл алуу арызы","6 сүрөт 3×4 (түстүү)","AIU каттоо барагын толтуруу"],
-      en:["Notarised bachelor's diploma + translation","Notarised academic transcript + translation","Notarised copy of passport + translation","Admission application","6 photos 3×4 (colour)","Completed AIU registration form"],
-    },
+  int:{
+    ru:["Заявление на поступление","Нотариально заверенный диплом об образовании + перевод на русский/англ. язык","Нотариально заверенная копия паспорта + перевод","6 фотографий 3×4 (цветные)","Результаты вступительного экзамена","Заполненный регистрационный лист AIU"],
+    kg:["Кабыл алуу арызы","Билим дипломунун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","Паспорттун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","6 сүрөт 3×4 (түстүү)","Кириш экзамен жыйынтыктары","AIU каттоо барагын толтуруу"],
+    en:["Admission application","Notarised education diploma + Russian/English translation","Notarised copy of passport + translation","6 photos 3×4 (colour)","Entrance exam results","Completed AIU registration form"],
   },
 };
 const ENROLL_STEPS={
@@ -279,27 +265,18 @@ const ENROLL_STEPS={
 };
 
 function DocsScreen({lang}){
-  const[tab,setTab]=useState("bach");
   const[sub,setSub]=useState("kr");
   const tl={
-    ru:{title:"Документы для поступления",sub:"Требуемые документы · Ала-Тоо МУА",bach:"Бакалавриат",master:"Магистратура",kr:"Граждане КР",int:"Иностранные студенты",note:"По вопросам поступления:",step:"Шаги приёма в AIU"},
-    kg:{title:"Кабыл алуу документтери",sub:"Талап кылынган документтер · Ала-Тоо МУА",bach:"Бакалавриат",master:"Магистратура",kr:"КР жарандары",int:"Чет өлкөлүк студенттер",note:"Кабыл алуу боюнча суроолор үчүн:",step:"AIU кабыл алуу кадамдары"},
-    en:{title:"Admission Documents",sub:"Required documents · Ala-Too AIU",bach:"Bachelor's",master:"Master's",kr:"KR Citizens",int:"Foreign Students",note:"For admission enquiries:",step:"AIU Admission Steps"},
+    ru:{title:"Документы для поступления",sub:"Требуемые документы · Бакалавриат · Ала-Тоо МУА",kr:"Граждане КР",int:"Иностранные студенты",note:"По вопросам поступления:",step:"Шаги приёма в AIU"},
+    kg:{title:"Кабыл алуу документтери",sub:"Талап кылынган документтер · Бакалавриат · Ала-Тоо МУА",kr:"КР жарандары",int:"Чет өлкөлүк студенттер",note:"Кабыл алуу боюнча суроолор үчүн:",step:"AIU кабыл алуу кадамдары"},
+    en:{title:"Admission Documents",sub:"Required documents · Bachelor's · Ala-Too AIU",kr:"KR Citizens",int:"Foreign Students",note:"For admission enquiries:",step:"AIU Admission Steps"},
   }[lang];
-  const docs=DOCS_DATA[tab][sub][lang];
+  const docs=DOCS_DATA[sub][lang];
   const steps=ENROLL_STEPS[lang];
   return(
     <div style={{maxWidth:720,margin:"0 auto"}}>
       <h2 style={{fontWeight:900,fontSize:20,color:C.textDark,marginBottom:4}}>{tl.title}</h2>
       <p style={{fontSize:12,color:C.textMuted,marginBottom:20}}>{tl.sub}</p>
-      <div style={{display:"flex",gap:8,marginBottom:14}}>
-        {[["bach","🎓",tl.bach],["master","🏆",tl.master]].map(([k,em,label])=>(
-          <button key={k} onClick={()=>setTab(k)}
-            style={{padding:"9px 20px",borderRadius:8,border:`1.5px solid ${tab===k?C.purple:C.border}`,background:tab===k?C.purple:"transparent",color:tab===k?C.white:C.textMid,fontWeight:tab===k?700:500,fontSize:13,cursor:"pointer",transition:"all 0.15s"}}>
-            {em} {label}
-          </button>
-        ))}
-      </div>
       <div style={{display:"flex",gap:8,marginBottom:20}}>
         {[["kr","🇰🇬",tl.kr],["int","🌍",tl.int]].map(([k,em,label])=>(
           <button key={k} onClick={()=>setSub(k)}
