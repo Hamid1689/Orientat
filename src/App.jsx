@@ -542,7 +542,7 @@ export default function OrientAT(){
       <header style={{background:C.purple,borderBottom:`3px solid ${C.red}`,padding:"14px 24px"}}>
         <div style={{maxWidth:1000,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:10}}>
           <div style={{display:"flex",alignItems:"center",gap:12,cursor:"pointer"}} onClick={()=>setScreen("home")}>
-            <Logo size={72}/>
+            <Logo size={42}/>
             <div>
               <div style={{display:"flex",alignItems:"center",gap:1}}>
                 <span style={{fontWeight:900,fontSize:20,color:C.white,letterSpacing:.3}}>Orient</span>
