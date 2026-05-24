@@ -379,7 +379,16 @@ export default function OrientAT(){
   const[step,setStep]=useState(0);
   const[answers,setAnswers]=useState([]);
   const[results,setResults]=useState([]);
-  const[msgs,setMsgs]=useState({ru:[{role:"assistant",content:T.ru.initMsg}],kg:[{role:"assistant",content:T.kg.initMsg}],en:[{role:"assistant",content:T.en.initMsg}]});
+  const[msgs,setMsgs]=useState(()=>{
+    try{
+      const saved=localStorage.getItem("orientat_chat");
+      if(saved){
+        const{data,ts}=JSON.parse(saved);
+        if(Date.now()-ts<2*60*60*1000)return data; // моложе 2 часов
+      }
+    }catch(e){}
+    return{ru:[{role:"assistant",content:T.ru.initMsg}],kg:[{role:"assistant",content:T.kg.initMsg}],en:[{role:"assistant",content:T.en.initMsg}]};
+  });
   const[input,setInput]=useState("");
   const[loading,setLoading]=useState(false);
   const[selected,setSelected]=useState(null);
@@ -388,6 +397,10 @@ export default function OrientAT(){
   const t=T[lang];const quiz=QUIZ_DATA[lang];const faculties=FACULTIES[lang];
 
   useEffect(()=>{chatEnd.current?.scrollIntoView({behavior:"smooth"});},[msgs,lang]);
+  // Сохраняем переписку в localStorage (живёт 2 часа с момента последнего сообщения)
+  useEffect(()=>{
+    try{localStorage.setItem("orientat_chat",JSON.stringify({data:msgs,ts:Date.now()}));}catch(e){}
+  },[msgs]);
   const pickAnswer=(tags)=>{setSelected(tags);setTimeout(()=>{const next=[...answers,tags];setAnswers(next);setSelected(null);if(step+1<quiz.length)setStep(step+1);else{setResults(calcResults(next,lang));setScreen("result");}},280);};
 
   const sendMsg=async()=>{
