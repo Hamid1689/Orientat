@@ -156,9 +156,9 @@ Rules: Only ONE discount. Cancelled with 4+ academic debts. Does not renew.
 Phone: +996(312)63-15-25. www.alatoo.edu.kg`;
 
 const T={
-  ru:{from:"от",currency:"сом",tagline:"МУА · Ала-Тоо · Профориентация",intake:"🎓 Приём 2026–2027 открыт",heroTitle:["Найди свой путь","в Ала-Тоо"],heroSub:"5 факультетов · 25+ программ · Обучение на английском · Двойные дипломы с вузами США, Германии, Кореи",startQuiz:"🎯 Пройти тест",openChat:"💬 Спросить чат-бота",notice:"⚠️ В AIU нет бюджетных мест — только контракт. Скидки от 5% до 100% по ОРТ и олимпиадам. Минимальный ОРТ — 110 баллов.",facultiesTitle:"Факультеты AIU — Стоимость 2026-2027",ortFrom:"ОРТ от",contractOnly:"Контракт",back:"← Назад",programsLabel:"Программы",askAboutFaculty:"💬 Задать вопрос",question:"Вопрос",of:"/",exit:"✕ Выйти",yourResult:"Твой результат",resultSub:"Рекомендации по факультетам AIU на основе твоих ответов",bestChoice:"⭐ ЛУЧШИЙ ВЫБОР",tryAgain:"🔄 Заново",askBot:"💬 Задать вопросы",chatTitle:"💬 Чат-консультант AIU",chatSub:"Актуально: 2026–2027 · alatoo.edu.kg",quickQ:["Сколько стоит IT факультет?","Какие скидки есть?","190 баллов ОРТ — скидка?","Самая дешёвая программа?"],inputPlaceholder:"Спроси про стоимость, скидки, ОРТ...",send:"Отправить",sending:"...",contacts:"Приёмная комиссия: +996 (312) 63-15-25 · ул. Анкара 1/8, Бишкек",thinking:"⏳ Думаю...",nav:["Главная","Тест","Чат-бот","Карта"],krFee:"Граждане КР",intFee:"Иностр.",perYear:"/ год",systemLang:"Отвечай по-русски, дружелюбно и кратко (2-4 предложения).",initMsg:"Привет! 👋 Я консультант AIU. Спрашивай про стоимость, скидки по ОРТ, программы или документы!"},
-  kg:{from:"",currency:"сомдон",tagline:"МУА · Ала-Тоо · Кесип тандоо",intake:"🎓 2026–2027 кабыл алуу ачык",heroTitle:["Өз жолуңду тап","Ала-Тоодо"],heroSub:"5 факультет · 25+ программа · Англис тилинде окутуу · АКШ, Германия, Корея менен эки диплом",startQuiz:"🎯 Тест өтүү",openChat:"💬 Чат-боттон сурануу",notice:"⚠️ МУАда бюджеттик орундар жок — контракт гана. ОРТ жана олимпиадалар боюнча 5%тен 100%ке чейин арзандатуу бар.",facultiesTitle:"AIU факультеттери — 2026-2027 наркы",ortFrom:"ОРТ дан",contractOnly:"Контракт",back:"← Артка",programsLabel:"Программалар",askAboutFaculty:"💬 Суроо берүү",question:"Суроо",of:"/",exit:"✕ Чыгуу",yourResult:"Сенин натыйжаң",resultSub:"Жоопторуңун негизинде AIU факультеттери боюнча сунуштар",bestChoice:"⭐ ЭҢ ЖАКШЫ ТАНДОО",tryAgain:"🔄 Кайрадан",askBot:"💬 Суроо берүү",chatTitle:"💬 AIU Чат-Консультант",chatSub:"Актуалдуу: 2026–2027 · alatoo.edu.kg",quickQ:["IT факультети канча турат?","Кандай арзандатуулар бар?","190 балл — кандай арзандатуу?","Эң арзан программа?"],inputPlaceholder:"Нарк, арзандатуу, ОРТ жөнүндө суроо жаз...",send:"Жөнөтүү",sending:"...",contacts:"Кабыл алуу бөлүмү: +996 (312) 63-15-25 · Анкара 1/8, Бишкек",thinking:"⏳ Ойлонуп жатам...",nav:["Башкы бет","Тест","Чат-бот","Карта"],krFee:"КР жарандары",intFee:"Чет өлкөлүк",perYear:"/ жыл",systemLang:"Кыргыз тилинде жооп бер, достукта жана кыскача (2-4 сүйлөм).",initMsg:"Саламатсыңбы! 👋 Мен AIU консультантымын. Окуунун наркы, арзандатуулар же программалар жөнүндө суроо бер!"},
-  en:{from:"from",currency:"som",tagline:"AIU · Ala-Too · Career Guidance",intake:"🎓 Admissions 2026–2027 Open",heroTitle:["Find Your Path","at Ala-Too"],heroSub:"5 Faculties · 25+ Programs · English-medium · Dual Degrees with USA, Germany, South Korea",startQuiz:"🎯 Take the Quiz",openChat:"💬 Ask the Chatbot",notice:"⚠️ AIU has no government-funded seats — tuition only. Scholarships 5–100% based on ORT and olympiads. Min ORT: 110.",facultiesTitle:"AIU Faculties — Tuition 2026-2027",ortFrom:"ORT from",contractOnly:"Tuition",back:"← Back",programsLabel:"Programs",askAboutFaculty:"💬 Ask a Question",question:"Question",of:"/",exit:"✕ Exit",yourResult:"Your Result",resultSub:"AIU faculty recommendations based on your answers",bestChoice:"⭐ BEST MATCH",tryAgain:"🔄 Retake",askBot:"💬 Ask Questions",chatTitle:"💬 AIU Chat Consultant",chatSub:"Up-to-date: 2026–2027 · alatoo.edu.kg",quickQ:["How much is the IT faculty?","What discounts are available?","I scored 190 — what discount?","Cheapest programme?"],inputPlaceholder:"Ask about tuition, discounts, ORT...",send:"Send",sending:"...",contacts:"Admissions: +996 (312) 63-15-25 · Ankara St 1/8, Bishkek",thinking:"⏳ Thinking...",nav:["Home","Quiz","Chatbot","Map"],krFee:"KR Citizens",intFee:"Foreign",perYear:"/ yr",systemLang:"Reply in English, friendly and concise (2-4 sentences).",initMsg:"Hi! 👋 I'm the AIU admissions consultant. Ask about tuition, ORT discounts, programmes or documents!"},
+  ru:{from:"от",currency:"сом",tagline:"МУА · Ала-Тоо · Профориентация",intake:"🎓 Приём 2026–2027 открыт",heroTitle:["Найди свой путь","в Ала-Тоо"],heroSub:"5 факультетов · 25+ программ · Обучение на английском · Двойные дипломы с вузами США, Германии, Кореи",startQuiz:"🎯 Пройти тест",openChat:"💬 Спросить чат-бота",notice:"⚠️ В AIU нет бюджетных мест — только контракт. Скидки от 5% до 100% по ОРТ и олимпиадам. Минимальный ОРТ — 110 баллов.",facultiesTitle:"Факультеты AIU — Стоимость 2026-2027",ortFrom:"ОРТ от",contractOnly:"Контракт",back:"← Назад",programsLabel:"Программы",askAboutFaculty:"💬 Задать вопрос",question:"Вопрос",of:"/",exit:"✕ Выйти",yourResult:"Твой результат",resultSub:"Рекомендации по факультетам AIU на основе твоих ответов",bestChoice:"⭐ ЛУЧШИЙ ВЫБОР",tryAgain:"🔄 Заново",askBot:"💬 Задать вопросы",chatTitle:"💬 Чат-консультант AIU",chatSub:"Актуально: 2026–2027 · alatoo.edu.kg",quickQ:["Сколько стоит IT факультет?","Какие скидки есть?","190 баллов ОРТ — скидка?","Самая дешёвая программа?"],inputPlaceholder:"Спроси про стоимость, скидки, ОРТ...",send:"Отправить",sending:"...",contacts:"Приёмная комиссия: +996 (312) 63-15-25 · ул. Анкара 1/8, Бишкек",thinking:"⏳ Думаю...",nav:["Главная","Тест","Чат-бот","Карта","Документы"],krFee:"Граждане КР",intFee:"Иностр.",perYear:"/ год",systemLang:"Отвечай по-русски, дружелюбно и кратко (2-4 предложения).",initMsg:"Привет! 👋 Я консультант AIU. Спрашивай про стоимость, скидки по ОРТ, программы или документы!"},
+  kg:{from:"",currency:"сомдон",tagline:"МУА · Ала-Тоо · Кесип тандоо",intake:"🎓 2026–2027 кабыл алуу ачык",heroTitle:["Өз жолуңду тап","Ала-Тоодо"],heroSub:"5 факультет · 25+ программа · Англис тилинде окутуу · АКШ, Германия, Корея менен эки диплом",startQuiz:"🎯 Тест өтүү",openChat:"💬 Чат-боттон сурануу",notice:"⚠️ МУАда бюджеттик орундар жок — контракт гана. ОРТ жана олимпиадалар боюнча 5%тен 100%ке чейин арзандатуу бар.",facultiesTitle:"AIU факультеттери — 2026-2027 наркы",ortFrom:"ОРТ дан",contractOnly:"Контракт",back:"← Артка",programsLabel:"Программалар",askAboutFaculty:"💬 Суроо берүү",question:"Суроо",of:"/",exit:"✕ Чыгуу",yourResult:"Сенин натыйжаң",resultSub:"Жоопторуңун негизинде AIU факультеттери боюнча сунуштар",bestChoice:"⭐ ЭҢ ЖАКШЫ ТАНДОО",tryAgain:"🔄 Кайрадан",askBot:"💬 Суроо берүү",chatTitle:"💬 AIU Чат-Консультант",chatSub:"Актуалдуу: 2026–2027 · alatoo.edu.kg",quickQ:["IT факультети канча турат?","Кандай арзандатуулар бар?","190 балл — кандай арзандатуу?","Эң арзан программа?"],inputPlaceholder:"Нарк, арзандатуу, ОРТ жөнүндө суроо жаз...",send:"Жөнөтүү",sending:"...",contacts:"Кабыл алуу бөлүмү: +996 (312) 63-15-25 · Анкара 1/8, Бишкек",thinking:"⏳ Ойлонуп жатам...",nav:["Башкы бет","Тест","Чат-бот","Карта","Документтер"],krFee:"КР жарандары",intFee:"Чет өлкөлүк",perYear:"/ жыл",systemLang:"Кыргыз тилинде жооп бер, достукта жана кыскача (2-4 сүйлөм).",initMsg:"Саламатсыңбы! 👋 Мен AIU консультантымын. Окуунун наркы, арзандатуулар же программалар жөнүндө суроо бер!"},
+  en:{from:"from",currency:"som",tagline:"AIU · Ala-Too · Career Guidance",intake:"🎓 Admissions 2026–2027 Open",heroTitle:["Find Your Path","at Ala-Too"],heroSub:"5 Faculties · 25+ Programs · English-medium · Dual Degrees with USA, Germany, South Korea",startQuiz:"🎯 Take the Quiz",openChat:"💬 Ask the Chatbot",notice:"⚠️ AIU has no government-funded seats — tuition only. Scholarships 5–100% based on ORT and olympiads. Min ORT: 110.",facultiesTitle:"AIU Faculties — Tuition 2026-2027",ortFrom:"ORT from",contractOnly:"Tuition",back:"← Back",programsLabel:"Programs",askAboutFaculty:"💬 Ask a Question",question:"Question",of:"/",exit:"✕ Exit",yourResult:"Your Result",resultSub:"AIU faculty recommendations based on your answers",bestChoice:"⭐ BEST MATCH",tryAgain:"🔄 Retake",askBot:"💬 Ask Questions",chatTitle:"💬 AIU Chat Consultant",chatSub:"Up-to-date: 2026–2027 · alatoo.edu.kg",quickQ:["How much is the IT faculty?","What discounts are available?","I scored 190 — what discount?","Cheapest programme?"],inputPlaceholder:"Ask about tuition, discounts, ORT...",send:"Send",sending:"...",contacts:"Admissions: +996 (312) 63-15-25 · Ankara St 1/8, Bishkek",thinking:"⏳ Thinking...",nav:["Home","Quiz","Chatbot","Map","Documents"],krFee:"KR Citizens",intFee:"Foreign",perYear:"/ yr",systemLang:"Reply in English, friendly and concise (2-4 sentences).",initMsg:"Hi! 👋 I'm the AIU admissions consultant. Ask about tuition, ORT discounts, programmes or documents!"},
 };
 
 const BLOCKS = [
@@ -194,6 +194,92 @@ const PREP_COURSE = {
   kg:{name:"Даярдоо курсу",tag:"Англис тили",note:"Англис тилин B1/B2 деңгээлинде билбегендер үчүн",desc:"Англис тилинде окуу үчүн интенсивдүү даярдоо. Курстан кийин студент AIU негизги программасына кирет."},
   en:{name:"Preparatory Course",tag:"English Language",note:"For students who haven't yet reached B1/B2 English level",desc:"Intensive English language preparation for degree studies. After completing the course students enter the main AIU programme."},
 };
+
+const DOCS_DATA={
+  bach:{
+    kr:{
+      ru:["Заявление на поступление","Копия паспорта","Оригинал аттестата (диплом) об образовании","6 фотографий 3×4 (цветные)","Оригинал сертификата ОРТ","Заполненный регистрационный лист AIU"],
+      kg:["Кабыл алуу арызы","Паспорттун көчүрмөсү","Орто билим тууралуу аттестаттын оригиналы (диплом)","6 сүрөт 3×4 (түстүү)","ОРТ сертификатынын оригиналы","AIU каттоо барагын толтуруу"],
+      en:["Admission application","Copy of passport","Original school diploma (or college diploma)","6 photos 3×4 (colour)","Original ORT certificate","Completed AIU registration form"],
+    },
+    int:{
+      ru:["Заявление на поступление","Нотариально заверенный диплом об образовании + перевод на русский/англ. язык","Нотариально заверенная копия паспорта + перевод","6 фотографий 3×4 (цветные)","Результаты вступительного экзамена","Заполненный регистрационный лист AIU"],
+      kg:["Кабыл алуу арызы","Билим дипломунун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","Паспорттун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","6 сүрөт 3×4 (түстүү)","Кириш экзамен жыйынтыктары","AIU каттоо барагын толтуруу"],
+      en:["Admission application","Notarised education diploma + Russian/English translation","Notarised copy of passport + translation","6 photos 3×4 (colour)","Entrance exam results","Completed AIU registration form"],
+    },
+  },
+  master:{
+    kr:{
+      ru:["Оригинал диплома о высшем образовании","Академическая справка (транскрипт)","Копия паспорта","Заявление на поступление","6 фотографий 3×4 (цветные)","Заполненный регистрационный лист AIU"],
+      kg:["Жогорку билим дипломунун оригиналы","Академиялык маалым кат (транскрипт)","Паспорттун көчүрмөсү","Кабыл алуу арызы","6 сүрөт 3×4 (түстүү)","AIU каттоо барагын толтуруу"],
+      en:["Original bachelor's diploma","Academic transcript","Copy of passport","Admission application","6 photos 3×4 (colour)","Completed AIU registration form"],
+    },
+    int:{
+      ru:["Нотариально заверенный диплом о высшем образовании + перевод","Нотариально заверенный транскрипт + перевод","Нотариально заверенная копия паспорта + перевод","Заявление на поступление","6 фотографий 3×4 (цветные)","Заполненный регистрационный лист AIU"],
+      kg:["Жогорку билим дипломунун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","Транскрипттин нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","Паспорттун нотариус тарабынан күбөлөндүрүлгөн көчүрмөсү + котормо","Кабыл алуу арызы","6 сүрөт 3×4 (түстүү)","AIU каттоо барагын толтуруу"],
+      en:["Notarised bachelor's diploma + translation","Notarised academic transcript + translation","Notarised copy of passport + translation","Admission application","6 photos 3×4 (colour)","Completed AIU registration form"],
+    },
+  },
+};
+const ENROLL_STEPS={
+  ru:["Подай документы в приёмную комиссию (приём открывается с июля)","Пройди внутренний тест по английскому (или предъяви IELTS/TOEFL/Duolingo)","Получи направление на оплату и подпиши контракт","Оплати 50% стоимости обучения в начале 1-го семестра","Получи студенческий билет и начни обучение!"],
+  kg:["Документтерди кабыл алуу комиссиясына тапшыр (июлдан башталат)","Ички англис тили тестинен өт (же IELTS/TOEFL/Duolingo сертификатын бер)","Төлөм жолдомосун ал жана контрактыга кол кой","1-семестрдин башында окуу наркынын 50%ин төлө","Студенттик билет ал жана окуону баштагыла!"],
+  en:["Submit documents to the admissions office (opens from July)","Pass the internal English test (or present IELTS/TOEFL/Duolingo)","Receive a payment direction and sign the contract","Pay 50% of annual tuition at the start of semester 1","Collect your student ID and begin your studies!"],
+};
+
+function DocsScreen({lang}){
+  const[tab,setTab]=useState("bach");
+  const[sub,setSub]=useState("kr");
+  const tl={
+    ru:{title:"Документы для поступления",sub:"Требуемые документы · Ала-Тоо МУА",bach:"Бакалавриат",master:"Магистратура",kr:"Граждане КР",int:"Иностранные студенты",note:"По вопросам поступления:",step:"Шаги приёма в AIU"},
+    kg:{title:"Кабыл алуу документтери",sub:"Талап кылынган документтер · Ала-Тоо МУА",bach:"Бакалавриат",master:"Магистратура",kr:"КР жарандары",int:"Чет өлкөлүк студенттер",note:"Кабыл алуу боюнча суроолор үчүн:",step:"AIU кабыл алуу кадамдары"},
+    en:{title:"Admission Documents",sub:"Required documents · Ala-Too AIU",bach:"Bachelor's",master:"Master's",kr:"KR Citizens",int:"Foreign Students",note:"For admission enquiries:",step:"AIU Admission Steps"},
+  }[lang];
+  const docs=DOCS_DATA[tab][sub][lang];
+  const steps=ENROLL_STEPS[lang];
+  return(
+    <div style={{maxWidth:720,margin:"0 auto"}}>
+      <h2 style={{fontWeight:900,fontSize:20,color:C.textDark,marginBottom:4}}>{tl.title}</h2>
+      <p style={{fontSize:12,color:C.textMuted,marginBottom:20}}>{tl.sub}</p>
+      <div style={{display:"flex",gap:8,marginBottom:14}}>
+        {[["bach","🎓",tl.bach],["master","🏆",tl.master]].map(([k,em,label])=>(
+          <button key={k} onClick={()=>setTab(k)}
+            style={{padding:"9px 20px",borderRadius:8,border:`1.5px solid ${tab===k?C.purple:C.border}`,background:tab===k?C.purple:"transparent",color:tab===k?C.white:C.textMid,fontWeight:tab===k?700:500,fontSize:13,cursor:"pointer",transition:"all 0.15s"}}>
+            {em} {label}
+          </button>
+        ))}
+      </div>
+      <div style={{display:"flex",gap:8,marginBottom:20}}>
+        {[["kr","🇰🇬",tl.kr],["int","🌍",tl.int]].map(([k,em,label])=>(
+          <button key={k} onClick={()=>setSub(k)}
+            style={{padding:"7px 16px",borderRadius:6,border:`1.5px solid ${sub===k?C.red:C.border}`,background:sub===k?"rgba(213,13,31,0.07)":"transparent",color:sub===k?C.red:C.textMuted,fontWeight:sub===k?700:500,fontSize:12,cursor:"pointer",transition:"all 0.15s"}}>
+            {em} {label}
+          </button>
+        ))}
+      </div>
+      <div style={{background:C.cardBg,border:`1px solid ${C.border}`,borderRadius:12,padding:"20px 22px",marginBottom:20,boxShadow:"0 2px 12px rgba(45,39,82,0.06)"}}>
+        {docs.map((doc,i)=>(
+          <div key={i} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"10px 0",borderBottom:i<docs.length-1?`1px solid ${C.border}`:"none"}}>
+            <div style={{width:26,height:26,borderRadius:"50%",background:C.purple,color:C.white,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,flexShrink:0,marginTop:2}}>{i+1}</div>
+            <div style={{fontSize:13,color:C.textDark,lineHeight:1.6,flex:1,paddingTop:3}}>{doc}</div>
+          </div>
+        ))}
+      </div>
+      <h3 style={{fontWeight:700,fontSize:14,color:C.textDark,marginBottom:12}}>{tl.step}</h3>
+      <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:20}}>
+        {steps.map((s,i)=>(
+          <div key={i} style={{display:"flex",gap:12,alignItems:"flex-start",background:C.cardBg,border:`1px solid ${C.border}`,borderLeft:`4px solid ${i===0?C.red:C.purple}`,borderRadius:8,padding:"10px 14px"}}>
+            <div style={{width:24,height:24,borderRadius:"50%",background:i===0?C.red:C.purple,color:C.white,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:700,flexShrink:0,marginTop:1}}>{i+1}</div>
+            <div style={{fontSize:13,color:C.textDark,lineHeight:1.5}}>{s}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{background:"#fffbeb",border:"1px solid #f59e0b",borderLeft:"4px solid #f59e0b",borderRadius:8,padding:"12px 16px",fontSize:13,color:"#78350f"}}>
+        <strong>{tl.note}</strong> DLC@ALATOO.EDU.KG · +996(312)63-15-25
+      </div>
+    </div>
+  );
+}
 
 function MapScreen({lang}){
   const [activeBlock,setActiveBlock]=useState(null);
@@ -455,7 +541,7 @@ export default function OrientAT(){
                 <button key={l} onClick={()=>switchLang(l)} style={{padding:"5px 12px",borderRadius:4,border:"none",background:lang===l?C.red:"transparent",color:C.white,fontSize:11,fontWeight:lang===l?700:400,cursor:"pointer",transition:"background 0.15s"}}>{lb}</button>
               ))}
             </div>
-            {[["home",0],["quiz",1],["chat",2],["map",3]].map(([s,i])=>(
+            {[["home",0],["quiz",1],["chat",2],["map",3],["docs",4]].map(([s,i])=>(
               <button key={s} onClick={()=>s==="quiz"?resetQuiz():setScreen(s)}
                 style={{padding:"8px 18px",border:"none",background:screen===s?C.red:"transparent",color:C.white,fontSize:13,cursor:"pointer",fontWeight:screen===s?700:400,borderRadius:6,transition:"background 0.15s"}}>
                 {t.nav[i]}
@@ -660,6 +746,11 @@ export default function OrientAT(){
         {/* MAP */}
         {screen==="map"&&(
           <MapScreen lang={lang} t={t}/>
+        )}
+
+        {/* DOCS */}
+        {screen==="docs"&&(
+          <DocsScreen lang={lang}/>
         )}
 
         {/* CHAT */}
