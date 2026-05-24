@@ -21,7 +21,7 @@ const C = {
 };
 
 const Logo = ({ size = 38 }) => (
-  <img src="/favicon.svg" width={size} height={size} alt="OrientAT logo" style={{display:"block",objectFit:"contain",borderRadius:10}}/>
+  <img src="/logo.png" width={size} height={size} alt="OrientAT logo" style={{display:"block",objectFit:"contain"}}/>
 );
 
 const PROGRAMS = {
